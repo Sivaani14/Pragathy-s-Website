@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Topics 📚</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#0a1628;--blue:#1e40af;--teal:#0d9488;--accent:#f59e0b;--green:#16a34a;--bg:#f8faff;--text:#0f172a;--muted:#64748b;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,22,40,.96);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:.9rem 2rem;border-bottom:1px solid rgba(255,255,255,.08);flex-wrap:wrap;gap:.5rem;}
+.logo{font-family:'Lora',serif;font-size:1.1rem;color:#fff;font-style:italic;}
+.nav-r{display:flex;align-items:center;gap:.8rem;}
+.pts{background:linear-gradient(135deg,var(--accent),#f97316);color:#fff;font-size:.82rem;font-weight:700;padding:.4rem 1rem;border-radius:999px;}
+.nbtn{color:#93c5fd;font-size:.82rem;text-decoration:none;border:1px solid rgba(147,197,253,.3);padding:.4rem 1rem;border-radius:999px;}
+.hero{padding:6.5rem 2rem 3.5rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;}
+.hi{position:relative;z-index:1;}
+.bc{color:rgba(255,255,255,.5);font-size:.8rem;margin-bottom:1rem;}
+.bc a{color:rgba(255,255,255,.7);text-decoration:none;}
+.hero h1{font-family:'Lora',serif;font-size:clamp(1.8rem,5vw,3rem);color:#fff;margin-bottom:.8rem;}
+.hero p{color:rgba(255,255,255,.7);max-width:500px;margin:0 auto 1.5rem;font-size:.92rem;line-height:1.7;}
+.hs{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;}
+.hp{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:.45rem 1.1rem;border-radius:999px;color:#fff;font-size:.78rem;}
+.content{max-width:1000px;margin:0 auto;padding:3rem 1.5rem 6rem;}
+.ps{background:#fff;border-radius:20px;padding:1.5rem 2rem;box-shadow:0 4px 20px rgba(30,64,175,.06);border:1px solid #e2e8f0;margin-bottom:2.5rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;}
+.pt{flex:1;min-width:200px;}
+.pt h3{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:.3rem;}
+.pt p{font-size:.8rem;color:var(--muted);}
+.pb{flex:2;min-width:150px;}
+.pbo{height:10px;background:#e2e8f0;border-radius:999px;margin-bottom:.3rem;}
+.pbf{height:100%;border-radius:999px;transition:width .5s;}
+.pp{font-size:.75rem;color:var(--muted);text-align:right;}
+.mbw{flex-shrink:0;}
+.mb{background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;border:none;border-radius:12px;padding:.75rem 1.5rem;font-family:'Sora',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;transition:transform .2s;}
+.mb:hover{transform:translateY(-2px);}
+.legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.5rem;font-size:.78rem;color:var(--muted);}
+.li{display:flex;align-items:center;gap:.4rem;}
+.ld{width:10px;height:10px;border-radius:50%;}
+.tl{display:flex;flex-direction:column;gap:1rem;}
+.tc{background:#fff;border-radius:20px;border:1px solid #e2e8f0;box-shadow:0 4px 16px rgba(30,64,175,.06);overflow:hidden;transition:box-shadow .25s;}
+.tc:hover{box-shadow:0 10px 30px rgba(30,64,175,.12);}
+.ti{display:flex;align-items:center;gap:1.2rem;padding:1.4rem 1.8rem;}
+.tn{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;color:#fff;flex-shrink:0;}
+.ticon{font-size:1.8rem;flex-shrink:0;}
+.tinfo{flex:1;}
+.tname{font-weight:700;font-size:1rem;color:var(--navy);margin-bottom:.3rem;}
+.tsubs{font-size:.75rem;color:var(--muted);}
+.tstatus{display:flex;align-items:center;gap:.6rem;flex-shrink:0;flex-wrap:wrap;}
+.sd{width:10px;height:10px;border-radius:50%;}
+.sl{font-size:.72rem;color:var(--muted);}
+.sbtn{background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;border:none;border-radius:10px;padding:.6rem 1.3rem;font-family:'Sora',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;transition:opacity .2s;white-space:nowrap;}
+.sbtn:hover{opacity:.88;}
+.sbtn.done{background:linear-gradient(135deg,var(--green),#15803d);}
+.game-row{display:flex;gap:.6rem;padding:.8rem 1.8rem;border-top:1px solid #f1f5f9;flex-wrap:wrap;}
+.gbtn{background:#f8faff;border:1px solid #e2e8f0;color:var(--navy);border-radius:8px;padding:.4rem .9rem;font-family:'Sora',sans-serif;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.3rem;}
+.gbtn:hover{background:#eff6ff;border-color:var(--blue);}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <span class="logo">Your Space 💙</span>
+  <div class="nav-r">
+    <div class="pts">⭐ <span id="pD">0</span> pts</div>
+    <a class="nbtn" id="backBtn" href="exam-section.html">← All Exams</a>
+    <a class="nbtn" href="index.html">🏠</a>
+  </div>
+</nav>
+<section class="hero" id="heroSec">
+  <div class="hi">
+    <div class="bc"><a href="exam-section.html">Exam Hub</a> → <span id="bExam">Loading...</span></div>
+    <div id="hIcon" style="font-size:3.5rem;margin-bottom:.5rem">📚</div>
+    <h1 id="hTitle">Topics</h1>
+    <p id="hDesc">Study every topic, take quizzes, and play games to master each concept!</p>
+    <div class="hs" id="hStats"></div>
+  </div>
+</section>
+<div class="content">
+  <div class="ps" id="progSec">
+    <div class="pt"><h3>Your Progress</h3><p id="pDesc">Loading...</p></div>
+    <div class="pb"><div class="pbo"><div class="pbf" id="pBF" style="width:0%"></div></div><div class="pp" id="pPct">0%</div></div>
+    <div class="mbw"><button class="mb" id="mockBtnMain">🎯 Full Mock Exam</button></div>
+  </div>
+  <div class="legend">
+    <div class="li"><div class="ld" style="background:var(--green)"></div>Studied</div>
+    <div class="li"><div class="ld" style="background:var(--accent)"></div>Quiz done</div>
+    <div class="li"><div class="ld" style="background:#e2e8f0"></div>Not started</div>
+  </div>
+  <div class="tl" id="topicList"></div>
+</div>
+<script src="study-data.js"></script>
+<script>
+const p=new URLSearchParams(window.location.search);
+const ek=p.get('exam')||'ibps';
+const ex=EXAMS[ek];
+function gpts(){return parseInt(localStorage.getItem('rpts')||'0');}
+function isDone(id){return localStorage.getItem('done_'+id)==='1';}
+function isQDone(id){return localStorage.getItem('qpts_'+id)==='1';}
+document.getElementById('pD').textContent=gpts();
+document.getElementById('backBtn').href='exam-section.html';
+document.getElementById('bExam').textContent=ex.name;
+document.getElementById('hIcon').textContent=ex.icon;
+document.getElementById('hTitle').textContent=ex.name;
+const heroEl=document.getElementById('heroSec');
+heroEl.style.background=ex.gradient;
+const mockLabels=Object.values(ex.mockConfig).map(m=>m.label);
+document.getElementById('hStats').innerHTML=mockLabels.map(l=>`<div class="hp">${l}</div>`).join('');
+const done=ex.topics.filter(t=>isDone(t.id)).length;
+const total=ex.topics.length;
+const pct=Math.round(done/total*100);
+document.getElementById('pDesc').textContent=`${done} of ${total} topics studied`;
+document.getElementById('pBF').style.width=pct+'%';
+document.getElementById('pBF').style.background=ex.gradient;
+document.getElementById('pPct').textContent=pct+'% complete';
+document.getElementById('mockBtnMain').onclick=()=>window.location.href=`mock-exam.html?exam=${ek}`;
+const list=document.getElementById('topicList');
+ex.topics.forEach((t,i)=>{
+  const tDone=isDone(t.id),qDone=isQDone(t.id);
+  const c=document.createElement('div');c.className='tc';
+  c.innerHTML=`<div class="ti"><div class="tn" style="background:${ex.gradient}">${i+1}</div>
+  <div class="ticon">${t.icon}</div>
+  <div class="tinfo"><div class="tname">${t.name}</div>
+  <div class="tsubs">${t.subtopics.slice(0,4).join(' · ')}${t.subtopics.length>4?' · ...':''}</div></div>
+  <div class="tstatus">
+    <div class="sd" style="background:${tDone?'var(--green)':'#e2e8f0'}"></div>
+    <span class="sl">${tDone?'Studied':'Not started'}</span>
+    <div class="sd" style="background:${qDone?'var(--accent)':'#e2e8f0'}"></div>
+    <span class="sl">${qDone?'Quiz ✓':'No quiz'}</span>
+  </div>
+  <button class="sbtn ${tDone?'done':''}" onclick="window.location.href='topic-study.html?exam=${ek}&topic=${t.id}'">
+    ${tDone?'✅ Review':'📖 Study →'}
+  </button></div>
+  <div class="game-row">
+    <button class="gbtn" onclick="window.location.href='topic-study.html?exam=${ek}&topic=${t.id}#quiz'">📝 Quiz</button>
+    <button class="gbtn" onclick="window.location.href='topic-study.html?exam=${ek}&topic=${t.id}#flashcards'">🃏 Flashcards</button>
+    <button class="gbtn" onclick="window.location.href='topic-study.html?exam=${ek}&topic=${t.id}#speedquiz'">⚡ Speed Quiz</button>
+    <button class="gbtn" onclick="window.location.href='topic-study.html?exam=${ek}&topic=${t.id}#match'">🔗 Match Game</button>
+  </div>`;
+  list.appendChild(c);
+});
+</script>
+</body>
+</html>

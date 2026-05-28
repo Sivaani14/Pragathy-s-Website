@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Mock Exam 🎯</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#0a1628;--blue:#1e40af;--teal:#0d9488;--tl:#5eead4;--accent:#f59e0b;--green:#16a34a;--bg:#f8faff;--text:#0f172a;--muted:#64748b;--red:#dc2626;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,22,40,.96);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:.8rem 2rem;border-bottom:1px solid rgba(255,255,255,.08);flex-wrap:wrap;gap:.5rem;}
+.logo{font-family:'Lora',serif;font-size:1rem;color:#fff;font-style:italic;}
+.nav-r{display:flex;align-items:center;gap:.6rem;}
+.pts{background:linear-gradient(135deg,var(--accent),#f97316);color:#fff;font-size:.78rem;font-weight:700;padding:.35rem .9rem;border-radius:999px;}
+.nlink{color:#93c5fd;font-size:.78rem;text-decoration:none;border:1px solid rgba(147,197,253,.3);padding:.35rem .9rem;border-radius:999px;}
+/* SETUP */
+.setup{padding:7rem 2rem 4rem;min-height:100vh;display:flex;align-items:center;justify-content:center;}
+.si{max-width:700px;width:100%;text-align:center;}
+.sico{font-size:4rem;margin-bottom:1rem;display:block;}
+.si h1{font-family:'Lora',serif;font-size:clamp(2rem,5vw,3rem);color:var(--navy);margin-bottom:.8rem;}
+.si p{color:var(--muted);max-width:500px;margin:0 auto 2.5rem;font-size:.9rem;line-height:1.7;}
+.sl2{text-align:left;margin-bottom:.8rem;font-weight:700;font-size:.88rem;color:var(--navy);}
+.eg{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.9rem;margin-bottom:2rem;}
+.ecard{background:#fff;border:2px solid #e2e8f0;border-radius:16px;padding:1.2rem .8rem;cursor:pointer;transition:all .2s;text-align:center;}
+.ecard:hover,.ecard.active{border-color:var(--blue);background:#eff6ff;box-shadow:0 0 0 3px rgba(37,99,235,.12);}
+.eico{font-size:2rem;margin-bottom:.4rem;}
+.enm{font-size:.82rem;font-weight:700;color:var(--navy);margin-bottom:.2rem;}
+.eqs{font-size:.7rem;color:var(--muted);}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;}
+.mcard{background:#fff;border:2px solid #e2e8f0;border-radius:16px;padding:1.5rem 1.2rem;cursor:pointer;transition:all .2s;text-align:center;}
+.mcard:hover,.mcard.active{border-color:var(--teal);background:#f0fdfa;box-shadow:0 0 0 3px rgba(13,148,136,.12);}
+.mico{font-size:2rem;margin-bottom:.5rem;}
+.mnm{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:.3rem;}
+.mdesc{font-size:.76rem;color:var(--muted);line-height:1.5;}
+.start-btn{width:100%;padding:1.1rem;background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;border:none;border-radius:14px;font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s;}
+.start-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 30px rgba(37,99,235,.3);}
+.start-btn:disabled{opacity:.5;cursor:default;}
+/* EXAM */
+.exam{display:none;}
+.exam.active{display:block;}
+.etop{position:fixed;top:0;left:0;right:0;z-index:50;background:#fff;border-bottom:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.05);padding:0 1.5rem;height:58px;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.etitle{font-family:'Lora',serif;font-size:.95rem;color:var(--navy);font-weight:600;}
+.tdisp{font-size:1.1rem;font-weight:700;color:var(--navy);min-width:60px;font-variant-numeric:tabular-nums;}
+.tdisp.warn{color:var(--red);animation:blink 1s ease infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+.abadge{background:#eff6ff;color:var(--blue);font-size:.8rem;font-weight:700;padding:.3rem .9rem;border-radius:999px;}
+.subbtn{background:linear-gradient(135deg,var(--green),#15803d);color:#fff;border:none;border-radius:10px;padding:.5rem 1.2rem;font-family:'Sora',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;}
+.ebody{padding:5rem 1.5rem 6rem;max-width:800px;margin:0 auto;}
+.qcard{background:#fff;border-radius:18px;border:1px solid #e2e8f0;box-shadow:0 4px 14px rgba(30,64,175,.06);padding:1.8rem;margin-bottom:1.2rem;}
+.qhdr{display:flex;align-items:flex-start;gap:.8rem;margin-bottom:1rem;}
+.qnum{background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;flex-shrink:0;margin-top:.1rem;}
+.qtxt{font-size:.93rem;font-weight:600;color:var(--navy);line-height:1.6;}
+.qopts{display:grid;gap:.55rem;margin-top:.8rem;}
+.qo{background:#f8faff;border:2px solid #e2e8f0;border-radius:11px;padding:.72rem 1rem;text-align:left;cursor:pointer;font-family:'Sora',sans-serif;font-size:.83rem;color:var(--text);transition:all .15s;display:flex;align-items:center;gap:.7rem;}
+.qo:hover:not(:disabled):not(.sel){border-color:var(--blue);background:#eff6ff;}
+.qo.sel{border-color:var(--blue);background:#dbeafe;color:var(--navy);}
+.qo.correct{border-color:#22c55e;background:#f0fdf4;color:#166534;}
+.qo.wrong{border-color:#ef4444;background:#fef2f2;color:#991b1b;}
+.qo.reveal{border-color:#22c55e;background:#f0fdf4;color:#166534;}
+.ql{width:26px;height:26px;border-radius:50%;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0;}
+.qo.sel .ql{background:var(--blue);color:#fff;}
+.qo.correct .ql,.qo.reveal .ql{background:#22c55e;color:#fff;}
+.qo.wrong .ql{background:#ef4444;color:#fff;}
+.qexp{margin-top:.8rem;background:#f0f9ff;border-left:3px solid var(--blue);padding:.85rem 1rem;border-radius:0 10px 10px 0;font-size:.78rem;color:#1e40af;line-height:1.7;display:none;}
+.qexp.show{display:block;}
+.palette{position:fixed;bottom:.8rem;left:50%;transform:translateX(-50%);background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:.7rem 1.1rem;box-shadow:0 8px 28px rgba(0,0,0,.1);display:flex;gap:.35rem;flex-wrap:wrap;max-width:calc(100vw - 2rem);z-index:40;}
+.pill{width:28px;height:28px;border-radius:50%;border:none;cursor:pointer;font-size:.68rem;font-weight:700;transition:transform .15s;flex-shrink:0;}
+.pill:hover{transform:scale(1.1);}
+.pill.una{background:#e2e8f0;color:var(--muted);}
+.pill.att{background:var(--blue);color:#fff;}
+/* RESULTS */
+.results{display:none;}
+.results.active{display:block;}
+.rw{max-width:760px;margin:0 auto;padding:5rem 1.5rem 4rem;}
+.rh{background:linear-gradient(135deg,#0a1628,#1e3a8a);border-radius:24px;padding:3rem 2rem;text-align:center;color:#fff;margin-bottom:2rem;}
+.remoji{font-size:4rem;margin-bottom:1rem;display:block;}
+.rpct{font-size:4rem;font-weight:700;color:var(--tl);margin-bottom:.5rem;}
+.rh h2{font-family:'Lora',serif;font-size:1.8rem;margin-bottom:.5rem;}
+.rh p{color:rgba(255,255,255,.75);font-size:.9rem;}
+.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:1rem;margin-bottom:2rem;}
+.stat{background:#fff;border-radius:16px;padding:1.2rem;border:1px solid #e2e8f0;text-align:center;}
+.sv{font-size:1.8rem;font-weight:700;color:var(--navy);margin-bottom:.2rem;}
+.sl{font-size:.76rem;color:var(--muted);}
+.stat.g .sv{color:var(--green);}
+.stat.r .sv{color:var(--red);}
+.abtns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-bottom:2rem;}
+.abtn{padding:.85rem 2rem;border:none;border-radius:12px;font-family:'Sora',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:transform .2s;}
+.abtn:hover{transform:translateY(-2px);}
+.abtn.primary{background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;}
+.abtn.sec{background:#f1f5f9;color:var(--navy);}
+.rev-section{margin-top:1rem;}
+.rev-section h3{font-family:'Lora',serif;font-size:1.2rem;color:var(--navy);margin-bottom:1rem;}
+.ritem{background:#fff;border-radius:14px;border:1px solid #e2e8f0;padding:1.1rem 1.3rem;margin-bottom:.8rem;}
+.ritem.wrong{border-color:#fca5a5;background:#fff5f5;}
+.ritem.right{border-color:#86efac;background:#f0fdf4;}
+.riq{font-size:.86rem;font-weight:600;color:var(--navy);margin-bottom:.4rem;line-height:1.5;}
+.ria{font-size:.78rem;color:var(--green);margin-bottom:.2rem;}
+.riy{font-size:.78rem;color:var(--red);}
+.rie{font-size:.75rem;color:var(--muted);margin-top:.35rem;line-height:1.6;}
+/* Celebration */
+.cel{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;align-items:center;justify-content:center;padding:2rem;}
+.cel.open{display:flex;}
+.cb{background:linear-gradient(135deg,#0f766e,#0891b2);border-radius:28px;padding:3rem 2.5rem;text-align:center;max-width:440px;width:100%;color:#fff;}
+.ce{font-size:4rem;display:block;margin-bottom:1rem;animation:bounce .8s ease infinite alternate;}
+@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+.cb h2{font-family:'Lora',serif;font-size:1.8rem;margin-bottom:.75rem;}
+.cb p{color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:1.2rem;}
+.sn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:14px;padding:1rem;font-size:.82rem;margin-bottom:1.2rem;line-height:1.6;}
+.cc{background:#fff;color:#0f766e;border:none;border-radius:12px;padding:.8rem 1.8rem;font-family:'Sora',sans-serif;font-weight:700;cursor:pointer;}
+.cp{position:fixed;animation:cf linear forwards;z-index:600;pointer-events:none;}
+@keyframes cf{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <span class="logo">Your Space 💙</span>
+  <div class="nav-r">
+    <div class="pts">⭐ <span id="pD">0</span> pts</div>
+    <a class="nlink" id="backLink" href="exam-section.html">← Exam Hub</a>
+  </div>
+</nav>
+
+<!-- SETUP -->
+<div class="setup" id="setupScreen">
+  <div class="si">
+    <span class="sico">🎯</span>
+    <h1>Full Mock Exam</h1>
+    <p>Simulate the real exam with 100% offline questions based on official previous year paper patterns. No internet needed!</p>
+    <div class="sl2">Select Exam:</div>
+    <div class="eg" id="examGrid"></div>
+    <div class="sl2">Select Mode:</div>
+    <div class="mg">
+      <div class="mcard active" id="mTimed" onclick="setMode('timed')">
+        <div class="mico">⏱️</div>
+        <div class="mnm">Timed Mode</div>
+        <div class="mdesc">Real countdown timer exactly like the actual exam. Tests speed and accuracy under pressure.</div>
+      </div>
+      <div class="mcard" id="mUntimed" onclick="setMode('untimed')">
+        <div class="mico">📖</div>
+        <div class="mnm">Practice Mode</div>
+        <div class="mdesc">No time pressure. Instant answer feedback. Best for learning from mistakes.</div>
+      </div>
+    </div>
+    <button class="start-btn" id="startBtn" onclick="startExam()" disabled>Start Mock Exam →</button>
+  </div>
+</div>
+
+<!-- EXAM -->
+<div class="exam" id="examScreen">
+  <div class="etop">
+    <div class="etitle" id="examTitle">Mock Exam</div>
+    <div id="timerWrap" style="display:flex;align-items:center;gap:.5rem;"><span>⏱️</span><span class="tdisp" id="timerDisp">60:00</span></div>
+    <div class="abadge" id="answBadge">0 answered</div>
+    <button class="subbtn" onclick="submitExam()">Submit ✓</button>
+  </div>
+  <div class="ebody" id="examBody"></div>
+  <div class="palette" id="palette"></div>
+</div>
+
+<!-- RESULTS -->
+<div class="results" id="resultsScreen">
+  <div class="rw">
+    <div class="rh">
+      <span class="remoji" id="rEmoji">🎯</span>
+      <div class="rpct" id="rPct">0%</div>
+      <h2 id="rTitle">Exam Complete!</h2>
+      <p id="rSub"></p>
+    </div>
+    <div class="sg" id="statsGrid"></div>
+    <div class="abtns">
+      <button class="abtn primary" onclick="location.reload()">Try Again 🔄</button>
+      <button class="abtn sec" onclick="window.location.href='exam-section.html'">← Exam Hub</button>
+      <button class="abtn sec" id="revToggle" onclick="toggleReview()">Review Answers 📝</button>
+    </div>
+    <div class="rev-section" id="revSection" style="display:none;">
+      <h3>Answer Review</h3>
+      <div id="revItems"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Celebration -->
+<div class="cel" id="celModal">
+  <div class="cb">
+    <span class="ce">🎉</span>
+    <h2>100 Points! 🏆</h2>
+    <p>You've earned <strong>100 Reward Points!</strong></p>
+    <div class="sn">📸 Take a screenshot & send to Sivaani!<br/>She's buying you a <strong>KitKat! 🍫</strong></div>
+    <button class="cc" onclick="document.getElementById('celModal').classList.remove('open')">Yay! 🎊</button>
+  </div>
+</div>
+
+<script src="study-data.js"></script>
+<script src="questions.js"></script>
+<script>
+const params=new URLSearchParams(window.location.search);
+let selExam=params.get('exam')||null,selMode='timed',examQs=[],userAns={},timerInt=null,timeLeft=0;
+
+function gp(){return parseInt(localStorage.getItem('rpts')||'0');}
+function ap(n){
+  if(localStorage.getItem('testMode') === 'true') return;
+  const p=gp(),np=Math.min(p+n,500);
+  localStorage.setItem('rpts',np);
+  document.getElementById('pD').textContent=np;
+  if(p<100&&np>=100)celebrate();
+}
+document.getElementById('pD').textContent=gp();
+
+// Build exam selector
+const grid=document.getElementById('examGrid');
+Object.keys(EXAMS).forEach(k=>{
+  const ex=EXAMS[k];
+  const labels=Object.values(ex.mockConfig).map(m=>m.label).join(' / ');
+  const btn=document.createElement('div');
+  btn.className='ecard'+(k===selExam?' active':'');
+  btn.onclick=()=>{
+    selExam=k;
+    document.querySelectorAll('.ecard').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('startBtn').disabled=false;
+    document.getElementById('backLink').href=`topic-list.html?exam=${k}`;
+  };
+  btn.innerHTML=`<div class="eico">${ex.icon}</div><div class="enm">${ex.name}</div><div class="eqs">${labels}</div>`;
+  grid.appendChild(btn);
+  if(k===selExam)document.getElementById('startBtn').disabled=false;
+});
+
+function setMode(m){
+  selMode=m;
+  document.getElementById('mTimed').classList.toggle('active',m==='timed');
+  document.getElementById('mUntimed').classList.toggle('active',m==='untimed');
+}
+
+function startExam(){
+  if(!selExam)return;
+  const ex=EXAMS[selExam];
+  const cfg=Object.values(ex.mockConfig)[0];
+  examQs=getMockQuestions(selExam,cfg.qs);
+  if(!examQs||examQs.length===0){alert('No questions found. Please check questions.js file is in same folder.');return;}
+  userAns={};
+  document.getElementById('setupScreen').style.display='none';
+  document.getElementById('examScreen').classList.add('active');
+  document.getElementById('examTitle').textContent=`${ex.name} — ${cfg.label}`;
+  if(selMode==='timed'){
+    timeLeft=cfg.time*60;
+    document.getElementById('timerDisp').textContent=fmtTime(timeLeft);
+    timerInt=setInterval(()=>{
+      timeLeft--;
+      const td=document.getElementById('timerDisp');
+      td.textContent=fmtTime(timeLeft);
+      if(timeLeft<=300)td.classList.add('warn');
+      if(timeLeft<=0){clearInterval(timerInt);submitExam();}
+    },1000);
+  } else {
+    document.getElementById('timerWrap').innerHTML='<span style="font-size:.85rem;color:var(--muted)">📖 Practice Mode</span>';
+  }
+  renderExam();buildPalette();
+}
+
+function fmtTime(s){const m=Math.floor(s/60),sc=s%60;return`${m}:${sc.toString().padStart(2,'0')}`;}
+
+function renderExam(){
+  const body=document.getElementById('examBody');body.innerHTML='';
+  const L=['A','B','C','D'];
+  examQs.forEach((q,idx)=>{
+    const c=document.createElement('div');c.className='qcard';c.id='qc'+idx;
+    c.innerHTML=`<div class="qhdr"><div class="qnum">${idx+1}</div><div class="qtxt">${q.q}</div></div>
+    <div class="qopts">${q.opts.map((o,i)=>`<button class="qo${userAns[idx]===i?' sel':''}" id="qo${idx}_${i}" onclick="pickAns(${idx},${i})"><span class="ql">${L[i]}</span>${o}</button>`).join('')}</div>
+    ${selMode==='untimed'&&userAns[idx]!==undefined?`<div class="qexp show">${q.exp}</div>`:''}`;
+    body.appendChild(c);
+  });
+  updateBadge();
+}
+
+function pickAns(qi,oi){
+  userAns[qi]=oi;
+  const L=['A','B','C','D'];
+  for(let i=0;i<4;i++){
+    const b=document.getElementById(`qo${qi}_${i}`);
+    if(!b)continue;
+    b.className='qo'+(i===oi?' sel':'');
+  }
+  if(selMode==='untimed'){
+    const q=examQs[qi];
+    for(let i=0;i<4;i++){
+      const b=document.getElementById(`qo${qi}_${i}`);if(!b)continue;
+      b.disabled=true;
+      if(i===q.ans)b.classList.add(i===oi?'correct':'reveal');
+      else if(i===oi)b.classList.add('wrong');
+    }
+    const card=document.getElementById('qc'+qi);
+    let exp=card.querySelector('.qexp');
+    if(!exp){exp=document.createElement('div');exp.className='qexp';exp.textContent=q.exp;card.appendChild(exp);}
+    exp.classList.add('show');
+  }
+  updateBadge();updatePalette();
+}
+
+function updateBadge(){
+  const n=Object.keys(userAns).length;
+  document.getElementById('answBadge').textContent=`${n}/${examQs.length} answered`;
+}
+function buildPalette(){
+  const p=document.getElementById('palette');
+  p.innerHTML='<span style="font-size:.7rem;color:var(--muted);white-space:nowrap;margin-right:.3rem">Jump:</span>';
+  examQs.forEach((_,i)=>{
+    const btn=document.createElement('button');
+    btn.className='pill una';btn.textContent=i+1;btn.id='qp'+i;
+    btn.onclick=()=>document.getElementById('qc'+i).scrollIntoView({behavior:'smooth',block:'center'});
+    p.appendChild(btn);
+  });
+}
+function updatePalette(){
+  examQs.forEach((_,i)=>{
+    const p=document.getElementById('qp'+i);
+    if(p)p.className='pill '+(userAns[i]!==undefined?'att':'una');
+  });
+}
+
+function submitExam(){
+  if(timerInt)clearInterval(timerInt);
+  document.getElementById('examScreen').classList.remove('active');
+  document.getElementById('palette').style.display='none';
+  document.getElementById('resultsScreen').classList.add('active');
+  let correct=0,wrong=0,unattempted=0;
+  examQs.forEach((q,i)=>{
+    if(userAns[i]===undefined)unattempted++;
+    else if(userAns[i]===q.ans)correct++;
+    else wrong++;
+  });
+  const total=examQs.length,pct=Math.round(correct/total*100);
+  const em=pct>=80?'🏆':pct>=60?'🌟':pct>=40?'💪':'📖';
+  const msg=pct>=80?"Excellent! You're exam ready!":pct>=60?"Good performance! Keep practising!":pct>=40?"Fair attempt. Focus on weak areas!":"Keep studying — every mock improves you!";
+  document.getElementById('rEmoji').textContent=em;
+  document.getElementById('rPct').textContent=pct+'%';
+  document.getElementById('rTitle').textContent=EXAMS[selExam].name+' Mock — Complete!';
+  document.getElementById('rSub').textContent=msg;
+  const neg=selExam==='ibps'||selExam==='sbi';
+  const score=neg?correct-(wrong*0.25):correct;
+  const sg=document.getElementById('statsGrid');
+  sg.innerHTML=`<div class="stat"><div class="sv">${total}</div><div class="sl">Total Qs</div></div>
+  <div class="stat g"><div class="sv">${correct}</div><div class="sl">Correct ✓</div></div>
+  <div class="stat r"><div class="sv">${wrong}</div><div class="sl">Wrong ✗</div></div>
+  <div class="stat"><div class="sv">${unattempted}</div><div class="sl">Unattempted</div></div>
+  <div class="stat"><div class="sv">${score.toFixed(1)}</div><div class="sl">Score${neg?' (-0.25)':''}</div></div>
+  <div class="stat"><div class="sv">${pct}%</div><div class="sl">Accuracy</div></div>`;
+  ap(15);
+  const L=['A','B','C','D'],ri=document.getElementById('revItems');
+  examQs.forEach((q,i)=>{
+    const ua=userAns[i],isC=ua===q.ans,isU=ua===undefined;
+    const d=document.createElement('div');
+    d.className='ritem '+(isC?'right':isU?'':'wrong');
+    d.innerHTML=`<div class="riq">Q${i+1}. ${q.q}</div>
+    <div class="ria">✓ Correct: ${L[q.ans]}. ${q.opts[q.ans]}</div>
+    ${!isU&&!isC?`<div class="riy">✗ Your answer: ${L[ua]}. ${q.opts[ua]}</div>`:''}
+    ${isU?'<div style="font-size:.76rem;color:var(--muted)">⚪ Not attempted</div>':''}
+    <div class="rie">${q.exp}</div>`;
+    ri.appendChild(d);
+  });
+}
+function toggleReview(){
+  const rs=document.getElementById('revSection');
+  const btn=document.getElementById('revToggle');
+  const hidden=rs.style.display==='none';
+  rs.style.display=hidden?'block':'none';
+  btn.textContent=hidden?'Hide Answers ▲':'Review Answers 📝';
+  if(hidden)rs.scrollIntoView({behavior:'smooth'});
+}
+function celebrate(){
+  ['#5eead4','#0ea5e9','#f59e0b','#fff','#c084fc'].forEach(c=>{
+    for(let i=0;i<16;i++){const el=document.createElement('div');el.className='cp';const s=Math.random()*12+6;el.style.cssText=`left:${Math.random()*100}vw;width:${s}px;height:${s}px;background:${c};animation-duration:${Math.random()*2.5+1.5}s;animation-delay:${Math.random()*.5}s;border-radius:${Math.random()>.5?'50%':'2px'};`;document.body.appendChild(el);el.addEventListener('animationend',()=>el.remove());}
+  });
+  document.getElementById('celModal').classList.add('open');
+}
+</script>
+</body>
+</html>

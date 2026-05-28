@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Exam Prep Hub 📚</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#0a1628;--blue:#1e40af;--teal:#0d9488;--tl:#5eead4;--accent:#f59e0b;--green:#16a34a;--bg:#f8faff;--text:#0f172a;--muted:#64748b;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,22,40,.96);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:.9rem 2rem;border-bottom:1px solid rgba(255,255,255,.08);flex-wrap:wrap;gap:.5rem;}
+.logo{font-family:'Lora',serif;font-size:1.1rem;color:#fff;font-style:italic;}
+.nav-r{display:flex;align-items:center;gap:1rem;}
+.pts{background:linear-gradient(135deg,var(--accent),#f97316);color:#fff;font-size:.82rem;font-weight:700;padding:.4rem 1rem;border-radius:999px;}
+.nbtn{color:#93c5fd;font-size:.82rem;text-decoration:none;border:1px solid rgba(147,197,253,.3);padding:.4rem 1rem;border-radius:999px;}
+.hero{padding:7rem 2rem 5rem;background:linear-gradient(135deg,#0a1628 0%,#1e3a8a 55%,#0f766e 100%);text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(37,99,235,.3) 0%,transparent 60%);}
+.hi{position:relative;z-index:1;}
+.htag{display:inline-block;background:rgba(245,158,11,.2);border:1px solid rgba(245,158,11,.4);color:var(--accent);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;padding:.4rem 1.2rem;border-radius:999px;margin-bottom:1.2rem;}
+.hero h1{font-family:'Lora',serif;font-size:clamp(2.2rem,6vw,4.5rem);color:#fff;line-height:1.15;margin-bottom:1rem;}
+.hero h1 em{font-style:italic;color:var(--tl);}
+.hero p{color:rgba(255,255,255,.7);max-width:560px;margin:0 auto 2.5rem;font-size:1rem;line-height:1.8;}
+.rw{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:1.5rem 2rem;max-width:680px;margin:0 auto 2.5rem;}
+.rl{display:flex;justify-content:space-between;color:rgba(255,255,255,.7);font-size:.82rem;margin-bottom:.7rem;}
+.rl span{color:var(--accent);font-weight:700;}
+.po{height:14px;background:rgba(255,255,255,.15);border-radius:999px;overflow:hidden;}
+.pf{height:100%;background:linear-gradient(to right,var(--tl),var(--accent));border-radius:999px;transition:width .6s ease;}
+.kk{color:rgba(255,255,255,.5);font-size:.75rem;margin-top:.6rem;text-align:center;}
+.content{max-width:1100px;margin:0 auto;padding:4rem 1.5rem 6rem;}
+.sl{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:.5rem;}
+.st{font-family:'Lora',serif;font-size:clamp(1.8rem,4vw,2.5rem);color:var(--navy);margin-bottom:2.5rem;}
+.eg{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:2rem;margin-bottom:5rem;}
+.ec{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 8px 30px rgba(30,64,175,.08);border:1px solid #e2e8f0;transition:transform .3s,box-shadow .3s;cursor:pointer;}
+.ec:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(30,64,175,.15);}
+.et{height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;position:relative;}
+.ei{font-size:3.5rem;transition:transform .3s;}
+.ec:hover .ei{transform:scale(1.1) rotate(-5deg);}
+.en{color:#fff;font-family:'Lora',serif;font-size:.95rem;font-style:italic;}
+.eb{padding:1.5rem 1.8rem 1.8rem;}
+.eb h3{font-family:'Lora',serif;font-size:1.2rem;color:var(--navy);margin-bottom:.4rem;}
+.eb p{font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:1.2rem;}
+.em{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem;}
+.ep{background:#f1f5f9;color:var(--muted);font-size:.7rem;padding:.25rem .7rem;border-radius:999px;}
+.epbar{margin-bottom:1.2rem;}
+.epl{font-size:.75rem;color:var(--muted);margin-bottom:.4rem;display:flex;justify-content:space-between;}
+.epo{height:6px;background:#e2e8f0;border-radius:999px;}
+.epf{height:100%;border-radius:999px;transition:width .5s;}
+.ebtn{width:100%;background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;border:none;border-radius:12px;padding:.85rem;font-family:'Sora',sans-serif;font-size:.92rem;font-weight:600;cursor:pointer;transition:opacity .2s,transform .2s;}
+.ebtn:hover{opacity:.9;transform:translateY(-1px);}
+.ps{background:#fff;border-radius:24px;padding:2.5rem;box-shadow:0 8px 30px rgba(30,64,175,.06);border:1px solid #e2e8f0;margin-bottom:3rem;}
+.ps h3{font-family:'Lora',serif;font-size:1.4rem;margin-bottom:.4rem;color:var(--navy);}
+.pss{font-size:.85rem;color:var(--muted);margin-bottom:1.5rem;}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem;}
+.pl{display:flex;align-items:center;gap:.8rem;background:#f8faff;border:1px solid #e2e8f0;border-radius:12px;padding:.85rem 1rem;text-decoration:none;transition:background .2s,transform .2s;}
+.pl:hover{background:#eff6ff;transform:translateY(-2px);}
+.pli{font-size:1.4rem;}
+.plt{font-size:.8rem;color:var(--navy);font-weight:600;flex:1;}
+.pla{color:var(--blue);font-size:.9rem;}
+.cel-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;align-items:center;justify-content:center;padding:2rem;}
+.cel-modal.open{display:flex;}
+.cb{background:linear-gradient(135deg,#0f766e,#0891b2);border-radius:28px;padding:3rem 2.5rem;text-align:center;max-width:460px;width:100%;color:#fff;}
+.ce{font-size:4rem;display:block;margin-bottom:1rem;animation:bounce .8s ease infinite alternate;}
+@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-12px)}}
+.cb h2{font-family:'Lora',serif;font-size:2rem;margin-bottom:.75rem;}
+.cb p{color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:1.2rem;font-size:.92rem;}
+.sn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:14px;padding:1rem;font-size:.85rem;margin-bottom:1.5rem;line-height:1.6;}
+.cc{background:#fff;color:#0f766e;border:none;border-radius:12px;padding:.85rem 2rem;font-family:'Sora',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;}
+footer{text-align:center;padding:2rem;font-size:.75rem;color:var(--muted);border-top:1px solid #e2e8f0;line-height:2;}
+footer a{color:var(--blue);text-decoration:none;}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <span class="logo">Your Space 💙</span>
+  <div class="nav-r">
+    <div class="pts">⭐ <span id="pD">0</span> pts</div>
+    <a class="nbtn" href="index.html">🏠 Home</a>
+  </div>
+</nav>
+<section class="hero">
+  <div class="hi">
+    <div class="htag">📚 Complete Study Platform</div>
+    <h1>Exam <em>Prep</em> Hub</h1>
+    <p>Choose your exam, study every topic with detailed notes & easy tricks, take topic quizzes, play memory games, and attempt full timed mock exams — all offline! 💪</p>
+    <div class="rw">
+      <div class="rl"><span>Study Progress</span><span id="rL">0 / 100 pts — Start studying! 🔥</span></div>
+      <div class="po"><div class="pf" id="pF" style="width:0%"></div></div>
+      <div class="kk">🍫 Reach 100 points → Sivaani buys you a KitKat!</div>
+      <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;">
+  <button onclick="resetProgress()" style="padding:6px 12px;border:none;border-radius:8px;background:#dc2626;color:white;cursor:pointer;">
+    Reset
+  </button>
+
+  <button onclick="toggleTestMode()" id="testBtn" style="padding:6px 12px;border:none;border-radius:8px;background:#0ea5e9;color:white;cursor:pointer;">
+    Test Mode: OFF
+  </button>
+</div>
+    </div>
+  </div>
+</section>
+<div class="content">
+  <div class="sl">Choose Your Exam</div>
+  <div class="st">Where would you like to study today?</div>
+  <div class="eg" id="eGrid"></div>
+  <div class="sl">Previous Year Papers — All Exams</div>
+  <div class="st" style="font-size:1.5rem;margin-bottom:1.5rem;">Download & Practice PYQs</div>
+  <div id="pyqAll"></div>
+</div>
+<div class="cel-modal" id="celModal">
+  <div class="cb">
+    <span class="ce">🎉</span>
+    <h2>100 Points! 🏆</h2>
+    <p>You've been studying so hard and earned <strong>100 Reward Points!</strong></p>
+    <div class="sn">📸 <strong>Take a screenshot</strong> and send to Sivaani!<br/>She's buying you a <strong>KitKat! 🍫</strong></div>
+    <button class="cc" onclick="document.getElementById('celModal').classList.remove('open')">Yay! 🎊</button>
+  </div>
+</div>
+<footer>
+  Syllabus from <a href="https://ugcnet.nta.ac.in/" target="_blank">NTA UGC NET</a> · <a href="https://ibps.in/" target="_blank">IBPS</a>. Made with love 💙
+</footer>
+<script src="study-data.js"></script>
+<script>
+function gp(){return parseInt(localStorage.getItem('rpts')||'0');}
+function ui(){
+  const p=gp();
+  document.getElementById('pD').textContent=p;
+  document.getElementById('rL').textContent=p>=100?p+' pts — You hit 100! 🎉🍫':p+' / 100 pts — Keep going! 🔥';
+  document.getElementById('pF').style.width=Math.min(p,100)+'%';
+}
+function getDone(k){
+  return EXAMS[k].topics.filter(t=>localStorage.getItem('done_'+t.id)==='1').length;
+}
+function renderExams(){
+  const g=document.getElementById('eGrid');
+  Object.keys(EXAMS).forEach(k=>{
+    const ex=EXAMS[k];
+    const done=getDone(k),total=ex.topics.length,pct=Math.round(done/total*100);
+    const c=document.createElement('div');c.className='ec';
+    c.innerHTML=`<div class="et" style="background:${ex.gradient}"><div class="ei">${ex.icon}</div><div class="en">${ex.name}</div></div>
+    <div class="eb"><h3>${ex.name}</h3><p>${Object.values(ex.mockConfig).map(m=>m.label).join('<br>')}</p>
+    <div class="em"><span class="ep">📚 ${total} Topics</span><span class="ep">✅ ${done} Done</span><span class="ep">🎯 ${pct}%</span></div>
+    <div class="epbar"><div class="epl"><span>Progress</span><span>${done}/${total}</span></div>
+    <div class="epo"><div class="epf" style="width:${pct}%;background:${ex.gradient}"></div></div></div>
+    <button class="ebtn" onclick="window.location.href='topic-list.html?exam=${k}'">Study ${ex.name} →</button></div>`;
+    g.appendChild(c);
+  });
+}
+function renderPYQ(){
+  const c=document.getElementById('pyqAll');
+  Object.keys(EXAMS).forEach(k=>{
+    const ex=EXAMS[k];
+    const s=document.createElement('div');s.className='ps';
+    s.innerHTML=`<div style="display:flex;align-items:center;gap:1rem;margin-bottom:.4rem;"><span style="font-size:2rem">${ex.icon}</span><h3>${ex.name}</h3></div>
+    <div class="pss">Previous year question papers from official and trusted sources</div>
+    <div class="pg">${ex.pyqLinks.map(l=>`<a class="pl" href="${l.url}" target="_blank"><span class="pli">📄</span><span class="plt">${l.label}</span><span class="pla">↗</span></a>`).join('')}</div>`;
+    c.appendChild(s);
+  });
+}
+window.addEventListener('DOMContentLoaded',()=>{
+  ui();
+  renderExams();
+  renderPYQ();
+  updateTestBtn(); // ✅ added
+});
+// RESET
+function resetProgress(){
+  localStorage.clear();
+  location.reload();
+}
+
+// TEST MODE
+function isTestMode(){
+  return localStorage.getItem('testMode') === 'true';
+}
+
+function toggleTestMode(){
+  const current = isTestMode();
+  localStorage.setItem('testMode', !current);
+  updateTestBtn();
+}
+
+function updateTestBtn(){
+  const btn = document.getElementById('testBtn');
+  if(!btn) return;
+
+  if(isTestMode()){
+    btn.textContent = "Test Mode: ON";
+    btn.style.background = "#16a34a";
+  } else {
+    btn.textContent = "Test Mode: OFF";
+    btn.style.background = "#0ea5e9";
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Fun Zone & Future Letters 🎉</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#0a1628;--blue:#1e40af;--teal:#0d9488;--tl:#5eead4;--accent:#f59e0b;--green:#16a34a;--pink:#ec4899;--purple:#7c3aed;--bg:#f8faff;--text:#0f172a;--muted:#64748b;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,22,40,.96);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:.9rem 2rem;border-bottom:1px solid rgba(255,255,255,.08);flex-wrap:wrap;gap:.5rem;}
+.logo{font-family:'Lora',serif;font-size:1.1rem;color:#fff;font-style:italic;}
+.nav-r{display:flex;align-items:center;gap:.8rem;}
+.nlink{color:#93c5fd;font-size:.82rem;text-decoration:none;border:1px solid rgba(147,197,253,.3);padding:.4rem 1rem;border-radius:999px;}
+/* HERO */
+.hero{padding:7rem 2rem 5rem;background:linear-gradient(135deg,#0a1628,#4c1d95,#0f766e);text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(124,58,237,.3),transparent 60%),radial-gradient(ellipse at 80% 30%,rgba(13,148,136,.25),transparent 50%);}
+.hi{position:relative;z-index:1;}
+.htag{display:inline-block;background:rgba(236,72,153,.2);border:1px solid rgba(236,72,153,.4);color:#f9a8d4;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;padding:.4rem 1.2rem;border-radius:999px;margin-bottom:1.2rem;}
+.hero h1{font-family:'Lora',serif;font-size:clamp(2.2rem,6vw,4rem);color:#fff;line-height:1.15;margin-bottom:1rem;}
+.hero h1 em{font-style:italic;color:var(--tl);}
+.hero p{color:rgba(255,255,255,.75);max-width:560px;margin:0 auto;font-size:.95rem;line-height:1.8;}
+/* SECTION TABS */
+.sec-tabs{display:flex;justify-content:center;gap:1rem;padding:2.5rem 2rem 0;flex-wrap:wrap;}
+.stab{background:#fff;border:2px solid #e2e8f0;border-radius:16px;padding:1rem 1.8rem;cursor:pointer;font-family:'Sora',sans-serif;font-weight:600;font-size:.9rem;color:var(--muted);transition:all .2s;display:flex;align-items:center;gap:.6rem;}
+.stab:hover,.stab.active{border-color:var(--blue);color:var(--navy);background:#eff6ff;box-shadow:0 4px 16px rgba(37,99,235,.12);}
+/* CONTENT */
+.content{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 6rem;}
+.sec-panel{display:none;}
+.sec-panel.active{display:block;}
+/* CARD GRID */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2rem;margin-bottom:3rem;}
+.fun-card{background:#fff;border-radius:24px;padding:2rem;box-shadow:0 8px 30px rgba(0,0,0,.08);border:1px solid #e2e8f0;transition:transform .3s,box-shadow .3s;}
+.fun-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.12);}
+.fc-icon{font-size:3rem;margin-bottom:1rem;display:block;}
+.fun-card h3{font-family:'Lora',serif;font-size:1.3rem;color:var(--navy);margin-bottom:.5rem;}
+.fun-card p{font-size:.84rem;color:var(--muted);line-height:1.7;margin-bottom:1.2rem;}
+.play-btn{background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;border:none;border-radius:12px;padding:.75rem 1.8rem;font-family:'Sora',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;transition:transform .2s;width:100%;}
+.play-btn:hover{transform:translateY(-2px);}
+.play-btn.pink{background:linear-gradient(135deg,var(--pink),#9333ea);}
+.play-btn.green{background:linear-gradient(135deg,var(--green),#0d9488);}
+.play-btn.orange{background:linear-gradient(135deg,#f97316,#dc2626);}
+/* STRESS BUSTER */
+.sb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;margin-bottom:2rem;}
+.sb-card{background:#fff;border-radius:16px;padding:1.5rem 1rem;text-align:center;border:1px solid #e2e8f0;cursor:pointer;transition:all .2s;}
+.sb-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.1);}
+.sb-card .ico{font-size:2.5rem;margin-bottom:.5rem;display:block;}
+.sb-card span{font-size:.82rem;font-weight:600;color:var(--navy);}
+/* QUIZ GAME */
+.quiz-game{background:#fff;border-radius:24px;padding:2.5rem;box-shadow:0 8px 30px rgba(0,0,0,.08);border:1px solid #e2e8f0;max-width:700px;margin:0 auto 3rem;}
+.qg-progress{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;}
+.qg-bar{flex:1;height:8px;background:#e2e8f0;border-radius:999px;margin:0 1rem;overflow:hidden;}
+.qg-fill{height:100%;background:linear-gradient(to right,var(--pink),var(--purple));border-radius:999px;transition:width .4s;}
+.qg-q{font-family:'Lora',serif;font-size:1.2rem;color:var(--navy);margin-bottom:1.5rem;line-height:1.5;}
+.qg-opts{display:grid;gap:.7rem;}
+.qg-opt{background:#f8faff;border:2px solid #e2e8f0;border-radius:12px;padding:.9rem 1.2rem;text-align:left;cursor:pointer;font-family:'Sora',sans-serif;font-size:.88rem;transition:all .2s;}
+.qg-opt:hover:not(:disabled){border-color:var(--purple);background:#faf5ff;}
+.qg-opt.chosen{border-color:var(--purple);background:#faf5ff;color:var(--purple);}
+.qg-result{text-align:center;padding:2rem 0;}
+.qg-result h2{font-family:'Lora',serif;font-size:2rem;margin-bottom:.5rem;}
+.qg-result p{color:var(--muted);margin-bottom:1.5rem;line-height:1.7;}
+.personality-badge{display:inline-block;background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;padding:.75rem 2rem;border-radius:999px;font-weight:700;font-size:1.1rem;margin-bottom:1rem;}
+/* BREATHE */
+.breathe-container{text-align:center;padding:2rem 0;}
+.breathe-circle{width:180px;height:180px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;cursor:pointer;font-size:1rem;font-weight:700;color:#fff;transition:transform .1s;}
+.breathe-circle.expand{animation:expand 4s ease-in-out forwards;}
+.breathe-circle.hold{animation:none;}
+.breathe-circle.shrink{animation:shrink 4s ease-in-out forwards;}
+@keyframes expand{to{transform:scale(1.6);}}
+@keyframes shrink{to{transform:scale(1);}}
+.breathe-text{font-size:1.4rem;font-weight:700;color:var(--navy);margin-bottom:.5rem;}
+.breathe-sub{font-size:.88rem;color:var(--muted);}
+/* FUTURE LETTERS */
+.letter-form{background:#fff;border-radius:24px;padding:2.5rem;box-shadow:0 8px 30px rgba(0,0,0,.08);border:1px solid #e2e8f0;max-width:700px;margin:0 auto 3rem;}
+.letter-form h2{font-family:'Lora',serif;font-size:1.5rem;color:var(--navy);margin-bottom:.5rem;}
+.letter-form p{font-size:.86rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.7;}
+.form-group{margin-bottom:1.2rem;}
+.form-group label{display:block;font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:.4rem;}
+.form-group input,.form-group textarea,.form-group select{width:100%;border:1.5px solid #e2e8f0;border-radius:12px;padding:.85rem 1rem;font-family:'Sora',sans-serif;font-size:.88rem;color:var(--text);transition:border-color .2s;background:#f8faff;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--blue);}
+.form-group textarea{min-height:180px;resize:vertical;}
+.save-btn{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;border:none;border-radius:12px;padding:.9rem 2rem;font-family:'Sora',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:transform .2s;width:100%;}
+.save-btn:hover{transform:translateY(-2px);}
+.letters-list{display:grid;gap:1.2rem;margin-top:2rem;}
+.letter-card{background:linear-gradient(135deg,#fff7ed,#fef3c7);border:1.5px solid #fcd34d;border-radius:20px;padding:1.8rem;position:relative;overflow:hidden;}
+.letter-card::before{content:'✉️';position:absolute;right:1.2rem;top:1rem;font-size:2rem;opacity:.3;}
+.letter-card h4{font-family:'Lora',serif;font-size:1.1rem;color:var(--navy);margin-bottom:.3rem;}
+.letter-date{font-size:.75rem;color:var(--muted);margin-bottom:.8rem;}
+.letter-preview{font-size:.85rem;color:#78350f;line-height:1.7;}
+.unlock-badge{display:inline-block;background:linear-gradient(135deg,var(--green),var(--teal));color:#fff;font-size:.72rem;font-weight:700;padding:.25rem .7rem;border-radius:999px;margin-bottom:.6rem;}
+.locked-badge{display:inline-block;background:#e2e8f0;color:var(--muted);font-size:.72rem;font-weight:700;padding:.25rem .7rem;border-radius:999px;margin-bottom:.6rem;}
+.read-btn{background:linear-gradient(135deg,var(--accent),#f97316);color:#fff;border:none;border-radius:10px;padding:.55rem 1.2rem;font-family:'Sora',sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;margin-top:.8rem;}
+.del-btn{background:#fef2f2;color:#dc2626;border:1px solid #fca5a5;border-radius:10px;padding:.55rem 1rem;font-family:'Sora',sans-serif;font-size:.78rem;cursor:pointer;margin-top:.8rem;margin-left:.5rem;}
+/* LETTER READER */
+.letter-reader{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:300;align-items:center;justify-content:center;padding:2rem;}
+.letter-reader.open{display:flex;}
+.lr-box{background:linear-gradient(135deg,#fffbeb,#fef9c3);border-radius:24px;padding:3rem;max-width:600px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,.3);}
+.lr-box h2{font-family:'Lora',serif;font-size:1.8rem;color:var(--navy);margin-bottom:.3rem;}
+.lr-date{font-size:.8rem;color:var(--muted);margin-bottom:1.5rem;}
+.lr-body{font-size:.92rem;color:#1c1917;line-height:1.9;white-space:pre-wrap;}
+.lr-close{background:var(--navy);color:#fff;border:none;border-radius:12px;padding:.75rem 2rem;font-family:'Sora',sans-serif;font-weight:700;cursor:pointer;margin-top:1.5rem;width:100%;}
+/* TOAST */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:#134e4a;color:#fff;padding:.9rem 1.8rem;border-radius:999px;font-size:.85rem;z-index:999;transition:transform .4s;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+/* CONFETTI */
+.cp{position:fixed;animation:cf linear forwards;z-index:600;pointer-events:none;}
+@keyframes cf{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <span class="logo">Your Space 💙</span>
+  <div class="nav-r">
+    <a class="nlink" href="exam-section.html">📚 Study Hub</a>
+    <a class="nlink" href="index.html">🏠 Home</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hi">
+    <div class="htag">🎉 Fun Zone & Future Letters</div>
+    <h1>Time to <em>Recharge</em> &amp; Dream</h1>
+    <p>Study hard, play harder! Take a break with fun games, calm your mind with stress busters, and write letters to your future self. 💌</p>
+  </div>
+</section>
+
+<!-- SECTION TABS -->
+<div class="sec-tabs">
+  <button class="stab active" onclick="showSec('fun',this)">🎮 Fun Zone</button>
+  <button class="stab" onclick="showSec('breathe',this)">🌬️ Breathe</button>
+  <button class="stab" onclick="showSec('quiz',this)">🔮 Personality Quiz</button>
+  <button class="stab" onclick="showSec('letters',this)">💌 Future Letters</button>
+</div>
+
+<div class="content">
+
+  <!-- FUN ZONE -->
+  <div class="sec-panel active" id="sec-fun">
+    <div style="text-align:center;padding:2rem 0 1rem">
+      <h2 style="font-family:'Lora',serif;font-size:2rem;color:var(--navy);margin-bottom:.5rem">Need a Break? You deserve it! 🎉</h2>
+      <p style="color:var(--muted);font-size:.9rem">Studies are important, but so is having fun. Play, laugh, and come back refreshed!</p>
+    </div>
+    <div class="card-grid">
+      <div class="fun-card">
+        <span class="fc-icon">🧠</span>
+        <h3>Brain Teasers</h3>
+        <p>Quick riddles and lateral thinking puzzles. Great for keeping your mind sharp between study sessions!</p>
+        <button class="play-btn" onclick="startBrainTeaser()">Play Now →</button>
+      </div>
+      <div class="fun-card">
+        <span class="fc-icon">🎯</span>
+        <h3>Memory Challenge</h3>
+        <p>Test your memory with a fun card-flip matching game. Great for training focus and concentration!</p>
+        <button class="play-btn pink" onclick="startMemoryGame()">Play Now →</button>
+      </div>
+      <div class="fun-card">
+        <span class="fc-icon">✍️</span>
+        <h3>Word Scramble</h3>
+        <p>Unscramble banking and management terms! Learn vocabulary while having fun.</p>
+        <button class="play-btn green" onclick="startWordScramble()">Play Now →</button>
+      </div>
+      <div class="fun-card">
+        <span class="fc-icon">🎵</span>
+        <h3>Sivaani's Playlist for You 💙</h3>
+        <p>A special playlist curated just for you — perfect study vibes and feel-good songs to keep you motivated! Made with love by Sivaani. 🎧</p>
+        <button class="play-btn orange" onclick="showSpotify()">Open Playlist →</button>
+      </div>
+      <div class="fun-card">
+        <span class="fc-icon">🌟</span>
+        <h3>Daily Affirmations</h3>
+        <p>Positive affirmations to start your study day right. Believe in yourself — you've got this! 💪</p>
+        <button class="play-btn green" onclick="showAffirmations()">Get Inspired →</button>
+      </div>
+    </div>
+    <!-- Game Area -->
+    <div id="gameArea" style="max-width:700px;margin:0 auto;"></div>
+  </div>
+
+  <!-- BREATHE -->
+  <div class="sec-panel" id="sec-breathe">
+    <div style="text-align:center;padding:2rem 0 2rem">
+      <h2 style="font-family:'Lora',serif;font-size:2rem;color:var(--navy);margin-bottom:.5rem">Breathe & Calm Down 🌬️</h2>
+      <p style="color:var(--muted);font-size:.9rem;max-width:500px;margin:0 auto">Feeling stressed before exam? These techniques actually work. Give yourself 5 minutes.</p>
+    </div>
+    <div class="sb-grid">
+      <div class="sb-card" onclick="startBreathing('4-7-8')" style="border-color:#bae6fd">
+        <span class="ico">🌊</span>
+        <span>4-7-8 Breathing</span>
+        <div style="font-size:.72rem;color:var(--muted);margin-top:.3rem">Best for anxiety</div>
+      </div>
+      <div class="sb-card" onclick="startBreathing('box')" style="border-color:#bbf7d0">
+        <span class="ico">📦</span>
+        <span>Box Breathing</span>
+        <div style="font-size:.72rem;color:var(--muted);margin-top:.3rem">Used by Navy SEALs</div>
+      </div>
+      <div class="sb-card" onclick="startBreathing('calm')" style="border-color:#e9d5ff">
+        <span class="ico">🌸</span>
+        <span>Calm Breathing</span>
+        <div style="font-size:.72rem;color:var(--muted);margin-top:.3rem">Simple & relaxing</div>
+      </div>
+      <div class="sb-card" onclick="showJournal()" style="border-color:#fde68a">
+        <span class="ico">📓</span>
+        <span>Quick Journal</span>
+        <div style="font-size:.72rem;color:var(--muted);margin-top:.3rem">Clear your mind</div>
+      </div>
+    </div>
+    <div style="max-width:500px;margin:0 auto">
+      <div class="breathe-container" id="breatheArea">
+        <div class="breathe-text">Choose a breathing technique above</div>
+        <div class="breathe-sub">Just 5 minutes can reduce stress by 30%</div>
+      </div>
+    </div>
+    <div id="journalArea" style="max-width:600px;margin:2rem auto;display:none">
+      <div class="fun-card">
+        <h3 style="margin-bottom:.8rem">📓 Quick Brain Dump</h3>
+        <p style="margin-bottom:1rem">Write down everything in your head right now. It helps to get it out!</p>
+        <textarea id="journalText" style="width:100%;min-height:150px;border:1.5px solid #e2e8f0;border-radius:12px;padding:.85rem;font-family:'Sora',sans-serif;font-size:.86rem;resize:vertical" placeholder="What's on your mind? Worries, goals, thoughts... write it all out..."></textarea>
+        <div style="margin-top:.8rem;display:flex;gap:.8rem">
+          <button onclick="clearJournal()" style="flex:1;padding:.7rem;border:1px solid #e2e8f0;border-radius:10px;background:#f8faff;font-family:'Sora',sans-serif;cursor:pointer">Clear 🗑️</button>
+          <button onclick="toast('Cleared your mind! Now go rock those exams! 💪')" style="flex:2;padding:.7rem;background:linear-gradient(135deg,var(--teal),var(--blue));color:#fff;border:none;border-radius:10px;font-family:'Sora',sans-serif;font-weight:700;cursor:pointer">Done — Feeling Better! ✨</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSONALITY QUIZ -->
+  <div class="sec-panel" id="sec-quiz">
+    <div style="text-align:center;padding:2rem 0 2rem">
+      <h2 style="font-family:'Lora',serif;font-size:2rem;color:var(--navy);margin-bottom:.5rem">What Kind of Learner Are You? 🔮</h2>
+      <p style="color:var(--muted);font-size:.9rem">Take this fun personality quiz to discover your learning style and get personalized study tips!</p>
+    </div>
+    <div class="quiz-game" id="personalityQuiz">
+      <div id="quizContent"></div>
+    </div>
+  </div>
+
+  <!-- FUTURE LETTERS -->
+  <div class="sec-panel" id="sec-letters">
+    <div style="text-align:center;padding:2rem 0 2rem">
+      <h2 style="font-family:'Lora',serif;font-size:2rem;color:var(--navy);margin-bottom:.5rem">Letters to Future You 💌</h2>
+      <p style="color:var(--muted);font-size:.9rem;max-width:500px;margin:0 auto">Write a letter to yourself that will unlock on a future date. Set goals, share dreams, leave encouragement. Your future self will thank you!</p>
+    </div>
+    <div class="letter-form">
+      <h2>✍️ Write a New Letter</h2>
+      <p>Pour your heart out. Only you can read it, and only when the date arrives.</p>
+      <div class="form-group">
+        <label>Letter Title</label>
+        <input type="text" id="lTitle" placeholder="e.g., After my IBPS PO result, On my 25th birthday..."/>
+      </div>
+      <div class="form-group">
+        <label>Unlock Date — when should your future self read this?</label>
+        <input type="date" id="lDate"/>
+      </div>
+      <div class="form-group">
+        <label>Your Letter</label>
+        <textarea id="lBody" placeholder="Dear future me,&#10;&#10;Right now I am studying so hard for IBPS PO and UGC NET. I hope by the time you read this...&#10;&#10;I want you to know that today I felt...&#10;&#10;My dreams for you are...&#10;&#10;With love,&#10;Past you 💙"></textarea>
+      </div>
+      <button class="save-btn" onclick="saveLetter()">💌 Seal this Letter</button>
+    </div>
+    <div id="lettersList"></div>
+  </div>
+
+</div>
+
+<!-- LETTER READER MODAL -->
+<div class="letter-reader" id="letterReader">
+  <div class="lr-box">
+    <h2 id="lrTitle">Letter Title</h2>
+    <div class="lr-date" id="lrDate"></div>
+    <div class="lr-body" id="lrBody"></div>
+    <button class="lr-close" onclick="document.getElementById('letterReader').classList.remove('open')">Close 💙</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== SECTION SWITCHING =====
+function showSec(name,btn){
+  document.querySelectorAll('.stab').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  document.querySelectorAll('.sec-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('sec-'+name).classList.add('active');
+  if(name==='quiz'&&!quizStarted)initPersonalityQuiz();
+  if(name==='letters')renderLetters();
+}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500);}
+function confetti(){
+  ['#f59e0b','#ec4899','#7c3aed','#0d9488','#fff'].forEach(c=>{
+    for(let i=0;i<10;i++){const el=document.createElement('div');el.className='cp';const s=Math.random()*10+5;el.style.cssText=`left:${Math.random()*100}vw;width:${s}px;height:${s}px;background:${c};animation-duration:${Math.random()*2+1.5}s;border-radius:${Math.random()>.5?'50%':'2px'};`;document.body.appendChild(el);el.addEventListener('animationend',()=>el.remove());}
+  });
+}
+
+// ===== BRAIN TEASERS =====
+const teasers=[
+  {q:"I speak without a mouth and hear without ears. I have no body, but come alive with wind. What am I?",a:"An echo! 🌊"},
+  {q:"The more you take, the more you leave behind. What am I?",a:"Footsteps! 👣"},
+  {q:"I have cities, but no houses live there. I have mountains, but no trees grow there. I have water, but no fish swim there. I have roads, but no cars drive there. What am I?",a:"A map! 🗺️"},
+  {q:"What can you catch but not throw?",a:"A cold! 🤧"},
+  {q:"A man walks into a library and asks for books about paranoia. The librarian whispers, 'They're right behind you!' What is this an example of?",a:"Humour and irony! 😄"},
+  {q:"What has a head and a tail, but no body?",a:"A coin! 🪙"},
+  {q:"What English word has three consecutive double letters?",a:"Bookkeeper! (oo, kk, ee) 📚"},
+  {q:"Forward I am heavy, backwards I am not. What am I?",a:"The word 'ton' — backwards it's 'not'! 🧩"},
+];
+let teaserIdx=0;
+function startBrainTeaser(){
+  teaserIdx=Math.floor(Math.random()*teasers.length);
+  showTeaser();
+}
+function showTeaser(){
+  const t=teasers[teaserIdx];
+  document.getElementById('gameArea').innerHTML=`
+    <div class="fun-card" style="text-align:center">
+      <div style="font-size:2.5rem;margin-bottom:1rem">🧠</div>
+      <h3 style="margin-bottom:1rem">Brain Teaser #${teaserIdx+1}</h3>
+      <p style="font-size:1rem;font-weight:600;color:var(--navy);line-height:1.6;margin-bottom:1.5rem">${t.q}</p>
+      <button onclick="document.getElementById('tAnswer').style.display='block';this.style.display='none'" style="background:linear-gradient(135deg,var(--accent),#f97316);color:#fff;border:none;border-radius:12px;padding:.75rem 2rem;font-family:'Sora',sans-serif;font-weight:700;cursor:pointer;margin-bottom:1rem">Reveal Answer 💡</button>
+      <div id="tAnswer" style="display:none;background:#f0fdf4;border-radius:12px;padding:1rem;color:var(--green);font-weight:600;margin-bottom:1rem">${t.a}</div>
+      <button onclick="teaserIdx=(teaserIdx+1)%${teasers.length};showTeaser()" style="background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;border:none;border-radius:12px;padding:.75rem 2rem;font-family:'Sora',sans-serif;font-weight:600;cursor:pointer">Next Teaser →</button>
+    </div>`;
+  document.getElementById('gameArea').scrollIntoView({behavior:'smooth'});
+}
+
+// ===== MEMORY GAME =====
+const memEmojis=['📚','💡','🎯','⭐','🏆','💎','🔮','🌟','📖','✨','💪','🎉'];
+let memCards=[],memFlipped=[],memSolved=0,memMoves=0,memTimer=null,memTime=0;
+function startMemoryGame(){
+  const pairs=memEmojis.slice(0,8);
+  memCards=[...pairs,...pairs].sort(()=>Math.random()-.5).map((e,i)=>({id:i,emoji:e,flipped:false,matched:false}));
+  memFlipped=[];memSolved=0;memMoves=0;memTime=0;
+  clearInterval(memTimer);
+  memTimer=setInterval(()=>{memTime++;const te=document.getElementById('memTime');if(te)te.textContent=memTime+'s';},1000);
+  renderMemory();
+  document.getElementById('gameArea').scrollIntoView({behavior:'smooth'});
+}
+function renderMemory(){
+  document.getElementById('gameArea').innerHTML=`
+    <div class="fun-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+        <h3>🎯 Memory Game</h3>
+        <div style="font-size:.82rem;color:var(--muted)">Moves: <strong id="memMoves">0</strong> | Time: <strong id="memTime">0s</strong></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem" id="memGrid"></div>
+    </div>`;
+  const grid=document.getElementById('memGrid');
+  memCards.forEach((c,i)=>{
+    const btn=document.createElement('button');
+    btn.style.cssText=`height:70px;border-radius:12px;border:2px solid #e2e8f0;font-size:1.8rem;cursor:pointer;background:${c.matched?'#f0fdf4':c.flipped?'linear-gradient(135deg,var(--blue),var(--teal))':'#f1f5f9'};transition:all .2s;`;
+    btn.textContent=c.matched||c.flipped?c.emoji:'?';
+    btn.onclick=()=>flipMemCard(i);
+    btn.disabled=c.matched;
+    grid.appendChild(btn);
+  });
+}
+function flipMemCard(i){
+  if(memCards[i].matched||memCards[i].flipped||memFlipped.length===2)return;
+  memCards[i].flipped=true;memFlipped.push(i);
+  renderMemory();
+  if(memFlipped.length===2){
+    memMoves++;document.getElementById('memMoves').textContent=memMoves;
+    const [a,b]=memFlipped;
+    if(memCards[a].emoji===memCards[b].emoji){
+      memCards[a].matched=memCards[b].matched=true;
+      memFlipped=[];memSolved++;
+      if(memSolved===8){clearInterval(memTimer);setTimeout(()=>{confetti();toast('🎉 You won! All pairs matched in '+memMoves+' moves and '+memTime+'s!');},300);}
+      else renderMemory();
+    } else {
+      setTimeout(()=>{memCards[a].flipped=memCards[b].flipped=false;memFlipped=[];renderMemory();},900);
+    }
+  }
+}
+
+// ===== WORD SCRAMBLE =====
+const scrambleWords=[
+  {word:"INFLATION",hint:"Rising prices in the economy"},
+  {word:"LIQUIDITY",hint:"Ease of converting assets to cash"},
+  {word:"DIVIDEND",hint:"Share of company profits paid to shareholders"},
+  {word:"COLLATERAL",hint:"Asset pledged as security for a loan"},
+  {word:"DEPRECIATION",hint:"Decrease in asset value over time"},
+  {word:"ENTREPRENEUR",hint:"Someone who starts and runs a business"},
+  {word:"HYPOTHESIS",hint:"A testable prediction or assumption"},
+  {word:"MOTIVATION",hint:"Inner drive to achieve goals"},
+  {word:"RECRUITMENT",hint:"Process of attracting job candidates"},
+  {word:"PERFORMANCE",hint:"How well someone does their job"},
+];
+let scrambleIdx=0,scrambleGuess='';
+function startWordScramble(){
+  scrambleIdx=Math.floor(Math.random()*scrambleWords.length);
+  showScramble();
+  document.getElementById('gameArea').scrollIntoView({behavior:'smooth'});
+}
+function scrambleWord(w){return w.split('').sort(()=>Math.random()-.5).join('');}
+function showScramble(){
+  const item=scrambleWords[scrambleIdx];
+  const scr=scrambleWord(item.word);
+  document.getElementById('gameArea').innerHTML=`
+    <div class="fun-card" style="text-align:center">
+      <div style="font-size:2.5rem;margin-bottom:.8rem">✍️</div>
+      <h3 style="margin-bottom:.5rem">Word Scramble!</h3>
+      <p style="font-size:.84rem;color:var(--muted);margin-bottom:1rem">Hint: ${item.hint}</p>
+      <div style="background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;border-radius:16px;padding:1.2rem;font-size:2rem;font-weight:700;letter-spacing:.2em;margin-bottom:1.5rem">${scr}</div>
+      <input id="scrambleInput" type="text" placeholder="Your answer..." style="width:100%;border:2px solid #e2e8f0;border-radius:12px;padding:.85rem;font-family:'Sora',sans-serif;font-size:.95rem;text-transform:uppercase;margin-bottom:1rem" oninput="this.value=this.value.toUpperCase()"/>
+      <div style="display:flex;gap:.8rem">
+        <button onclick="checkScramble('${item.word}')" style="flex:2;padding:.8rem;background:linear-gradient(135deg,var(--accent),#f97316);color:#fff;border:none;border-radius:12px;font-family:'Sora',sans-serif;font-weight:700;cursor:pointer">Check ✓</button>
+        <button onclick="scrambleIdx=(scrambleIdx+1)%${scrambleWords.length};showScramble()" style="flex:1;padding:.8rem;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:12px;font-family:'Sora',sans-serif;cursor:pointer">Skip →</button>
+      </div>
+      <div id="scrambleResult" style="margin-top:1rem"></div>
+    </div>`;
+}
+function checkScramble(word){
+  const input=document.getElementById('scrambleInput').value.trim().toUpperCase();
+  const res=document.getElementById('scrambleResult');
+  if(input===word){
+    res.innerHTML=`<div style="background:#f0fdf4;color:var(--green);border-radius:12px;padding:.9rem;font-weight:700">🎉 Correct! "${word}" — Well done!</div>`;
+    confetti();
+    setTimeout(()=>{scrambleIdx=(scrambleIdx+1)%scrambleWords.length;showScramble();},2000);
+  } else {
+    res.innerHTML=`<div style="background:#fef2f2;color:#dc2626;border-radius:12px;padding:.9rem">❌ Not quite! Try again.</div>`;
+  }
+}
+
+// ===== SPOTIFY PLAYLIST =====
+function showSpotify(){
+  const saved = localStorage.getItem('spotifyUrl') || '';
+  const embedHtml = saved
+    ? '<iframe src="' + saved + '" width="100%" height="380" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius:12px"></iframe>'
+    : '<div style="background:rgba(255,255,255,.05);border:2px dashed rgba(255,255,255,.2);border-radius:12px;padding:2rem;color:rgba(255,255,255,.5);font-size:.9rem">Playlist will appear here once you save the link! 🎵</div>';
+
+  document.getElementById('gameArea').innerHTML =
+    '<div class="fun-card" style="text-align:center">' +
+      '<div style="font-size:2.5rem;margin-bottom:.8rem">🎵</div>' +
+      '<h3 style="margin-bottom:.3rem">Sivaani&#39;s Playlist for You 💙</h3>' +
+      '<p style="font-size:.84rem;color:var(--muted);margin-bottom:1.5rem">Made specially for you — study beats, feel-good songs & everything in between. Plug in your earphones! 🎧</p>' +
+      '<div style="border-radius:16px;overflow:hidden;background:#191414;padding:1.2rem">' +
+        '<div style="color:#1DB954;font-size:.88rem;font-weight:700;margin-bottom:1rem;text-align:left">📌 How to add the playlist:</div>' +
+        '<div style="background:rgba(255,255,255,.08);border-radius:12px;padding:1rem;text-align:left;margin-bottom:1rem">' +
+          '<div style="color:#fff;font-size:.83rem;line-height:1.9">' +
+            '<span style="color:#1DB954;font-weight:700">Step 1:</span> Sivaani opens her Spotify playlist<br/>' +
+            '<span style="color:#1DB954;font-weight:700">Step 2:</span> Click ··· → Share → Copy link to playlist<br/>' +
+            '<span style="color:#1DB954;font-weight:700">Step 3:</span> Paste below and click Save!' +
+          '</div>' +
+        '</div>' +
+        '<div id="spotifyEmbed" style="margin-bottom:1rem">' + embedHtml + '</div>' +
+        '<div style="display:flex;gap:.8rem;margin-bottom:.5rem">' +
+          '<input id="spotifyInput" type="text" placeholder="Paste Spotify link here..." ' +
+            'style="flex:1;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:.7rem 1rem;color:#fff;font-family:Sora,sans-serif;font-size:.82rem;outline:none" ' +
+            'value="' + saved.replace(/'/g, "\'") + '"/>' +
+          '<button onclick="saveSpotify()" style="background:#1DB954;color:#000;border:none;border-radius:10px;padding:.7rem 1.2rem;font-family:Sora,sans-serif;font-weight:700;cursor:pointer;font-size:.82rem;white-space:nowrap;flex-shrink:0">Save ✓</button>' +
+        '</div>' +
+        '<div style="color:rgba(255,255,255,.4);font-size:.72rem">Works with any Spotify playlist, album, or song link.</div>' +
+      '</div>' +
+    '</div>';
+
+  document.getElementById('gameArea').scrollIntoView({behavior:'smooth'});
+}
+
+function saveSpotify(){
+  const input = document.getElementById('spotifyInput');
+  if(!input) return;
+  const raw = input.value.trim();
+  if(!raw){ toast('Please paste a Spotify URL first! 🎵'); return; }
+
+  // Strip query params (?si=...) and extract type + ID
+  const clean = raw.split('?')[0].trim();
+  const match = clean.match(/open\.spotify\.com\/(?:embed\/)?(playlist|album|track|artist)\/([A-Za-z0-9]+)/);
+
+  if(!match){ toast('Invalid Spotify link. Use Share → Copy link on Spotify. 🎵'); return; }
+
+  const embedUrl = 'https://open.spotify.com/embed/' + match[1] + '/' + match[2];
+  localStorage.setItem('spotifyUrl', embedUrl);
+
+  const iframe = '<iframe src="' + embedUrl + '" width="100%" height="380" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius:12px"></iframe>';
+  const el = document.getElementById('spotifyEmbed');
+  if(el) el.innerHTML = iframe;
+
+  toast('Playlist saved! Now playing 🎵💙');
+}
+
+// ===== AFFIRMATIONS =====
+const affirmations=[
+  "I am capable of achieving anything I set my mind to. 💪",
+  "Every day I study, I get closer to my dream job. 🎯",
+  "Challenges make me stronger. I embrace them. 🌟",
+  "I have the strength, knowledge, and ability to succeed. ✨",
+  "I am more prepared today than I was yesterday. 📈",
+  "My hard work is paying off, even when I can't see it yet. 🌱",
+  "I choose to focus on what I can control — my effort. 🎓",
+  "Setbacks are setups for comebacks. I never give up. 🔥",
+  "I am building the future I dream of, one study session at a time. 💙",
+  "I trust the process. My success is inevitable. 🏆",
+];
+let affIdx=0;
+function showAffirmations(){
+  affIdx=Math.floor(Math.random()*affirmations.length);
+  showNextAff();
+  document.getElementById('gameArea').scrollIntoView({behavior:'smooth'});
+}
+function showNextAff(){
+  document.getElementById('gameArea').innerHTML=`
+    <div class="fun-card" style="text-align:center;background:linear-gradient(135deg,#faf5ff,#ede9fe)">
+      <div style="font-size:3rem;margin-bottom:1rem">🌟</div>
+      <p style="font-family:'Lora',serif;font-size:1.3rem;font-style:italic;color:var(--navy);line-height:1.7;margin-bottom:1.5rem">"${affirmations[affIdx]}"</p>
+      <button onclick="affIdx=(affIdx+1)%${affirmations.length};showNextAff()" style="background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;border:none;border-radius:12px;padding:.75rem 2rem;font-family:'Sora',sans-serif;font-weight:700;cursor:pointer">Next Affirmation 🌸</button>
+    </div>`;
+}
+
+// ===== BREATHING =====
+let breatheInterval=null;
+const breathePatterns={
+  '4-7-8':{steps:[{text:'Inhale',duration:4},{text:'Hold',duration:7},{text:'Exhale slowly',duration:8}],name:'4-7-8 Breathing',desc:'Breathe in for 4, hold for 7, exhale for 8. Reduces anxiety instantly.'},
+  'box':{steps:[{text:'Inhale',duration:4},{text:'Hold',duration:4},{text:'Exhale',duration:4},{text:'Hold',duration:4}],name:'Box Breathing',desc:'Equal 4-count cycle. Used by Navy SEALs to stay calm under pressure.'},
+  'calm':{steps:[{text:'Inhale slowly',duration:5},{text:'Exhale gently',duration:5}],name:'Calm Breathing',desc:'Simple 5-5 pattern. Focus on your breath, let go of stress.'}
+};
+function startBreathing(type){
+  const pattern=breathePatterns[type];
+  let stepIdx=0,countdown=pattern.steps[0].duration,cycleCount=0;
+  clearInterval(breatheInterval);
+  function updateBreath(){
+    const step=pattern.steps[stepIdx];
+    const phase=step.text==='Inhale'||step.text==='Inhale slowly'?'expand':step.text==='Exhale'||step.text==='Exhale slowly'||step.text==='Exhale gently'?'shrink':'hold';
+    document.getElementById('breatheArea').innerHTML=`
+      <div style="margin-bottom:1rem">
+        <div style="font-size:1rem;font-weight:700;color:var(--blue);margin-bottom:.3rem">${pattern.name}</div>
+        <div style="font-size:.82rem;color:var(--muted)">${pattern.desc}</div>
+      </div>
+      <div class="breathe-circle ${phase}" style="background:${phase==='expand'?'linear-gradient(135deg,var(--blue),var(--teal))':phase==='shrink'?'linear-gradient(135deg,var(--teal),#0891b2)':'linear-gradient(135deg,var(--purple),var(--pink))'}">
+        <div style="text-align:center"><div style="font-size:.9rem;font-weight:700">${step.text}</div><div style="font-size:2rem;font-weight:700">${countdown}</div></div>
+      </div>
+      <div class="breathe-text">${step.text}</div>
+      <div class="breathe-sub">Cycle ${cycleCount+1} | Step ${stepIdx+1}/${pattern.steps.length}</div>
+      <button onclick="clearInterval(breatheInterval);document.getElementById('breatheArea').innerHTML='<div class=\\"breathe-text\\">Choose a technique above</div>'" style="margin-top:1rem;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:10px;padding:.55rem 1.2rem;font-family:Sora,sans-serif;cursor:pointer;font-size:.82rem">Stop</button>`;
+    countdown--;
+    if(countdown<0){
+      stepIdx=(stepIdx+1)%pattern.steps.length;
+      if(stepIdx===0)cycleCount++;
+      countdown=pattern.steps[stepIdx].duration;
+    }
+  }
+  updateBreath();
+  breatheInterval=setInterval(updateBreath,1000);
+}
+function showJournal(){document.getElementById('journalArea').style.display='block';document.getElementById('journalArea').scrollIntoView({behavior:'smooth'});}
+function clearJournal(){document.getElementById('journalText').value='';toast('Cleared! Fresh start. 🌟');}
+
+// ===== PERSONALITY QUIZ =====
+const pqData=[
+  {q:"When studying a new topic, you prefer to:",opts:["Read and re-read the textbook carefully","Watch videos and diagrams","Write notes and summaries in your own words","Discuss with friends or explain to yourself out loud"]},
+  {q:"Before an exam, you feel most confident when:",opts:["You've read everything multiple times","You can visualize the concepts clearly","You've made detailed notes and mindmaps","You've explained it to someone else"],},
+  {q:"When you're stuck on a problem, you:",opts:["Re-read the theory section","Look for visual examples or analogies","Try to work through it step by step on paper","Talk yourself through it out loud"]},
+  {q:"Your ideal study session looks like:",opts:["Quiet room, textbook, pen — no distractions","Colourful diagrams, videos, and charts","Organized notes, highlighters, and structured summaries","Study group or explaining to an imaginary audience"]},
+  {q:"After studying, you remember things best if:",opts:["You read them many times","You drew or saw a diagram of them","You wrote them in your own words","You explained them to someone"]},
+];
+const pqResults=[
+  {type:"📚 The Deep Reader",desc:"You learn best through thorough reading and repetition. Your strength is deep comprehension. Tip: Try spaced repetition — re-read topics after 1 day, 1 week, and 1 month for best retention!"},
+  {type:"🎨 The Visual Learner",desc:"You think in pictures and diagrams! Your strength is seeing the big picture. Tip: Convert all theory into flowcharts, mind maps, and diagrams. BCG Matrix? Draw it. Maslow's pyramid? Sketch it!"},
+  {type:"✍️ The Note-Taker",desc:"You process information by writing it down. Your strength is organized, structured learning. Tip: Use the Cornell Method — notes on right, keywords on left, summary at bottom. Review summaries daily!"},
+  {type:"🎙️ The Verbal Processor",desc:"You learn by explaining! Your strength is understanding through articulation. Tip: Use the Feynman Technique — explain every concept as if teaching a 10-year-old. If you can't explain it, you don't know it yet!"},
+];
+let pqAnswers=[],quizStarted=false;
+function initPersonalityQuiz(){
+  quizStarted=true;pqAnswers=[];renderPQ(0);
+}
+function renderPQ(idx){
+  if(idx>=pqData.length){showPQResult();return;}
+  const q=pqData[idx];
+  document.getElementById('quizContent').innerHTML=`
+    <div class="qg-progress">
+      <div style="font-size:.82rem;font-weight:700;color:var(--navy)">Q${idx+1}/${pqData.length}</div>
+      <div class="qg-bar"><div class="qg-fill" style="width:${(idx/pqData.length)*100}%"></div></div>
+      <div style="font-size:.82rem;color:var(--muted)">${Math.round(idx/pqData.length*100)}%</div>
+    </div>
+    <div class="qg-q">${q.q}</div>
+    <div class="qg-opts">${q.opts.map((o,i)=>`<button class="qg-opt" onclick="pqAnswers.push(${i});renderPQ(${idx+1})">${o}</button>`).join('')}</div>`;
+}
+function showPQResult(){
+  const counts=[0,0,0,0];
+  pqAnswers.forEach(a=>counts[a]++);
+  const maxIdx=counts.indexOf(Math.max(...counts));
+  const r=pqResults[maxIdx];
+  document.getElementById('quizContent').innerHTML=`
+    <div class="qg-result">
+      <div style="font-size:3rem;margin-bottom:1rem">🔮</div>
+      <h2>Your Learning Style Is...</h2>
+      <div class="personality-badge">${r.type}</div>
+      <p>${r.desc}</p>
+      <button onclick="pqAnswers=[];renderPQ(0)" style="background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;border:none;border-radius:12px;padding:.75rem 2rem;font-family:'Sora',sans-serif;font-weight:700;cursor:pointer">Retake Quiz 🔄</button>
+    </div>`;
+  confetti();
+}
+
+// ===== FUTURE LETTERS =====
+function saveLetter(){
+  const title=document.getElementById('lTitle').value.trim();
+  const date=document.getElementById('lDate').value;
+  const body=document.getElementById('lBody').value.trim();
+  if(!title||!date||!body){toast('Please fill in all fields! 💙');return;}
+  const letters=JSON.parse(localStorage.getItem('futureLetters')||'[]');
+  letters.unshift({id:Date.now(),title,date,body,written:new Date().toLocaleDateString('en-IN')});
+  localStorage.setItem('futureLetters',JSON.stringify(letters));
+  document.getElementById('lTitle').value='';
+  document.getElementById('lDate').value='';
+  document.getElementById('lBody').value='';
+  confetti();
+  toast('Letter sealed! 💌 Your future self will love it!');
+  renderLetters();
+}
+function renderLetters(){
+  const letters=JSON.parse(localStorage.getItem('futureLetters')||'[]');
+  const container=document.getElementById('lettersList');
+  if(letters.length===0){
+    container.innerHTML='<div style="text-align:center;padding:2rem;color:var(--muted);font-size:.9rem">No letters yet. Write your first letter to your future self! 💌</div>';
+    return;
+  }
+  container.innerHTML='<h3 style="font-family:Lora,serif;font-size:1.5rem;color:var(--navy);margin-bottom:1.2rem;text-align:center">Your Letters 💌</h3><div class="letters-list" id="lettersContainer"></div>';
+  const lc=document.getElementById('lettersContainer');
+  letters.forEach((l,i)=>{
+    const unlockDate=new Date(l.date);
+    const today=new Date();
+    const isUnlocked=today>=unlockDate;
+    const daysLeft=Math.ceil((unlockDate-today)/(1000*60*60*24));
+    const d=document.createElement('div');d.className='letter-card';
+    d.innerHTML=`${isUnlocked?`<div class="unlock-badge">🔓 Unlocked!</div>`:`<div class="locked-badge">🔒 Unlocks in ${daysLeft} day${daysLeft!==1?'s':''}</div>`}
+    <h4>${l.title}</h4>
+    <div class="letter-date">Written on ${l.written} · Unlocks on ${new Date(l.date).toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})}</div>
+    <div class="letter-preview">${isUnlocked?l.body.substring(0,200)+'...':'🔒 This letter is still sealed. Come back on '+new Date(l.date).toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})+' to read it!'}</div>
+    ${isUnlocked?`<button class="read-btn" onclick="readLetter(${i})">Read Full Letter 💌</button>`:''}
+    <button class="del-btn" onclick="deleteLetter(${i})">Delete 🗑️</button>`;
+    lc.appendChild(d);
+  });
+}
+function readLetter(i){
+  const letters=JSON.parse(localStorage.getItem('futureLetters')||'[]');
+  const l=letters[i];
+  document.getElementById('lrTitle').textContent='💌 '+l.title;
+  document.getElementById('lrDate').textContent='Written '+l.written+' · Opened '+new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('lrBody').textContent=l.body;
+  document.getElementById('letterReader').classList.add('open');
+}
+function deleteLetter(i){
+  if(!confirm('Delete this letter? This cannot be undone.'))return;
+  const letters=JSON.parse(localStorage.getItem('futureLetters')||'[]');
+  letters.splice(i,1);
+  localStorage.setItem('futureLetters',JSON.stringify(letters));
+  renderLetters();
+  toast('Letter deleted.');
+}
+</script>
+</body>
+</html>

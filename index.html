@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>A Special Place — Just For You</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --teal: #0d9488;
+    --teal-light: #5eead4;
+    --teal-dark: #0f766e;
+    --blue: #0ea5e9;
+    --bg: #f0fdfa;
+    --text: #134e4a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #0f766e 0%, #0891b2 55%, #1d4ed8 100%);
+    z-index: 0;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 30%, rgba(94,234,212,0.3) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 70%, rgba(14,165,233,0.25) 0%, transparent 50%);
+  }
+
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(110vh); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.5; }
+    100% { transform: translateY(-20vh); opacity: 0; }
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.5rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.8s 0.2s both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 8vw, 6rem);
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+    animation: fadeInUp 0.8s 0.4s both;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--teal-light);
+  }
+
+  .hero p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: rgba(255,255,255,0.8);
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+    animation: fadeInUp 0.8s 0.6s both;
+  }
+
+  .scroll-down {
+    position: absolute;
+    bottom: 2.5rem; left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.5);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    z-index: 2;
+    animation: fadeInUp 0.8s 1s both;
+  }
+  .scroll-down span {
+    width: 1px; height: 36px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  @keyframes fadeInUp {
+    from { opacity:0; transform:translateY(30px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  /* SECTIONS GRID */
+  .sections-area {
+    padding: 6rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .sections-intro {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .sections-intro .label {
+    font-size: 0.78rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.8rem;
+  }
+
+  .sections-intro h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--text);
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .section-card {
+    background: #fff;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(13,148,136,0.1);
+    border: 1px solid rgba(94,234,212,0.25);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    cursor: pointer;
+  }
+
+  .section-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 60px rgba(13,148,136,0.2);
+  }
+
+  .card-top {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-top .card-icon {
+    font-size: 5rem;
+    z-index: 1;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+    transition: transform 0.3s ease;
+  }
+
+  .section-card:hover .card-icon {
+    transform: scale(1.15) rotate(-5deg);
+  }
+
+  .card-top::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: inherit;
+    opacity: 0.08;
+  }
+
+  /* Card color themes */
+  .card-birthday .card-top {
+    background: linear-gradient(135deg, #0f766e, #0891b2);
+  }
+  .card-exam .card-top {
+    background: linear-gradient(135deg, #0369a1, #1d4ed8);
+  }
+  .card-fun .card-top {
+    background: linear-gradient(135deg, #0891b2, #6366f1);
+  }
+
+  .card-number {
+    position: absolute;
+    top: 14px; left: 18px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.6);
+    z-index: 2;
+  }
+
+  .card-body {
+    padding: 1.8rem 2rem 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.5rem;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--text);
+    margin-bottom: 0.8rem;
+  }
+
+  .card-desc {
+    font-size: 0.92rem;
+    color: #5a8e8a;
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    background: linear-gradient(135deg, var(--teal-dark), var(--blue));
+    color: #fff;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+    text-decoration: none;
+    width: fit-content;
+  }
+
+  .card-cta:hover { opacity: 0.9; transform: translateX(3px); }
+
+  .card-cta .arrow { transition: transform 0.2s; }
+  .section-card:hover .card-cta .arrow { transform: translateX(4px); }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #0f766e, #0891b2);
+    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem;
+  }
+
+  footer strong {
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-content">
+    <div class="badge">✨ Made just for you ✨</div>
+    <h1>Welcome to<br/><em>Your Space</em></h1>
+    <p>A little corner of the internet built with love — your memories, your dreams, your happy place. 💙</p>
+  </div>
+
+  <div class="scroll-down">
+    Explore
+    <span></span>
+  </div>
+</section>
+
+<!-- SECTION CARDS -->
+<section class="sections-area">
+  <div class="sections-intro">
+    <div class="label">Everything just for you</div>
+    <h2>Choose Your Space</h2>
+  </div>
+
+  <div class="cards-grid">
+
+    <!-- Birthday -->
+    <div class="section-card card-birthday" onclick="window.location.href='birthday-section.html'">
+      <div class="card-top">
+        <span class="card-number">01</span>
+        <div class="card-icon">🎂</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Celebration</div>
+        <div class="card-title">Birthday Wishes</div>
+        <div class="card-desc">A wall of love, photos, and memories. Relive beautiful moments and keep adding new ones — your story, forever.</div>
+        <a class="card-cta" href="birthday-section.html">Open <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- Exam Prep -->
+    <div class="section-card card-exam" onclick="window.location.href='exam-section.html'">
+      <div class="card-top">
+        <span class="card-number">02</span>
+        <div class="card-icon">📚</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Study Hub</div>
+        <div class="card-title">Exam Prep</div>
+        <div class="card-desc">IBPS, SBI & UGC NET syllabi all in one place. Practice quizzes with previous year questions — tailored for your journey.</div>
+        <a class="card-cta" href="exam-section.html">Open <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- Fun Zone + Future Letters -->
+    <div class="section-card card-fun" onclick="window.location.href='fun-section.html'">
+      <div class="card-top">
+        <span class="card-number">03</span>
+        <div class="card-icon">🎉</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Fun & Letters</div>
+        <div class="card-title">Fun Zone & Future Letters</div>
+        <div class="card-desc">Games, quizzes & a playlist to de-stress — plus a magical space to write letters to your future self. 💌</div>
+        <a class="card-cta" href="fun-section.html">Open <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Made with love 💙</strong>
+  A birthday gift — just for you, always.
+</footer>
+
+<script>
+  // Generate floating bubbles
+  const hero = document.querySelector('.hero');
+  for (let i = 0; i < 18; i++) {
+    const b = document.createElement('div');
+    b.className = 'bubble';
+    const size = Math.random() * 60 + 15;
+    b.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      animation-duration:${Math.random()*12+8}s;
+      animation-delay:${Math.random()*10}s;
+    `;
+    hero.appendChild(b);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Birthday 🎂</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<style>
+:root { --teal:#0d9488; --teal-light:#5eead4; --teal-dark:#0f766e; --blue:#0ea5e9; --bg:#f0fdfa; --text:#134e4a; }
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+
+.topnav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(15,118,110,0.92);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0.8rem 2rem;border-bottom:1px solid rgba(255,255,255,0.1);}
+.topnav .logo{font-family:'Playfair Display',serif;font-style:italic;color:#fff;font-size:1.05rem;}
+.topnav .back-btn{color:var(--teal-light);font-size:0.82rem;text-decoration:none;border:1px solid rgba(94,234,212,0.4);padding:0.4rem 1rem;border-radius:999px;transition:background 0.2s;}
+.topnav .back-btn:hover{background:rgba(94,234,212,0.15);}
+
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:2rem;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0f766e 0%,#0891b2 50%,#1d4ed8 100%);z-index:0;}
+.hero-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 40%,rgba(94,234,212,0.25) 0%,transparent 60%),radial-gradient(ellipse at 80% 70%,rgba(14,165,233,0.2) 0%,transparent 50%);}
+.bubble{position:absolute;border-radius:50%;background:rgba(255,255,255,0.08);animation:floatUp linear infinite;}
+@keyframes floatUp{0%{transform:translateY(110vh);opacity:0}10%{opacity:1}90%{opacity:0.6}100%{transform:translateY(-20vh);opacity:0}}
+.hero-content{position:relative;z-index:2;animation:fadeInUp 1s ease both;}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.birthday-badge{display:inline-block;background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:0.85rem;letter-spacing:0.2em;text-transform:uppercase;padding:0.5rem 1.5rem;border-radius:999px;margin-bottom:1.5rem;animation:fadeInUp 1s 0.2s ease both;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,6.5rem);color:#fff;line-height:1.1;margin-bottom:1rem;animation:fadeInUp 1s 0.4s ease both;}
+.hero h1 em{font-style:italic;color:var(--teal-light);}
+.hero p{font-size:clamp(1rem,2.5vw,1.3rem);color:rgba(255,255,255,0.8);max-width:520px;margin:0 auto 2.5rem;line-height:1.7;animation:fadeInUp 1s 0.6s ease both;}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.5);font-size:0.8rem;letter-spacing:0.1em;display:flex;flex-direction:column;align-items:center;gap:0.4rem;z-index:2;animation:fadeInUp 1s 1s ease both;}
+.scroll-hint span{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,0.5),transparent);animation:scrollLine 1.5s ease-in-out infinite;}
+@keyframes scrollLine{0%,100%{opacity:1}50%{opacity:0.3}}
+
+.wish-section{padding:6rem 2rem;max-width:900px;margin:0 auto;text-align:center;}
+.section-label{font-size:0.8rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);color:var(--text);margin-bottom:1.5rem;}
+.wish-card{background:white;border-radius:24px;padding:3rem;box-shadow:0 20px 60px rgba(13,148,136,0.1);border:1px solid rgba(94,234,212,0.3);position:relative;overflow:hidden;margin-top:2rem;}
+.wish-card::before{content:'"';position:absolute;top:-10px;left:20px;font-family:'Playfair Display',serif;font-size:12rem;color:rgba(94,234,212,0.15);line-height:1;pointer-events:none;}
+.wish-text{font-family:'Playfair Display',serif;font-size:clamp(1.1rem,2.5vw,1.4rem);line-height:1.9;color:#1e5a55;position:relative;z-index:1;}
+.wish-signature{margin-top:2rem;font-size:0.9rem;color:var(--teal);font-style:italic;}
+
+
+/* HER MEMORIES */
+.her-section{padding:2rem 2rem 4rem;max-width:1100px;margin:0 auto;}
+.drive-banner{background:linear-gradient(135deg,#0f766e,#0891b2);border-radius:20px;padding:2rem;color:#fff;text-align:center;margin-bottom:2rem;}
+.drive-banner h3{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:0.5rem;}
+.drive-banner p{color:rgba(255,255,255,0.8);font-size:0.9rem;margin-bottom:0.5rem;line-height:1.7;}
+.drive-banner .hint{font-size:0.75rem;color:rgba(255,255,255,0.55);margin-bottom:1.2rem;}
+.drive-row{display:flex;gap:0.75rem;max-width:600px;margin:0 auto;flex-wrap:wrap;justify-content:center;}
+.drive-input{flex:1;min-width:200px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:12px;padding:0.8rem 1.1rem;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;}
+.drive-input::placeholder{color:rgba(255,255,255,0.45);}
+.btn-drive{background:#fff;color:var(--teal-dark);border:none;border-radius:12px;padding:0.8rem 1.5rem;font-family:'DM Sans',sans-serif;font-weight:600;cursor:pointer;font-size:0.9rem;white-space:nowrap;transition:transform 0.2s;}
+.btn-drive:hover{transform:translateY(-2px);}
+
+/* ADD SECTION */
+.add-section{background:linear-gradient(135deg,#0f766e,#0891b2);padding:5rem 2rem;text-align:center;}
+.add-section h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin-bottom:0.8rem;}
+.add-section>p{color:rgba(255,255,255,0.75);margin-bottom:2.5rem;font-size:1rem;}
+.add-form{background:rgba(255,255,255,0.1);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.25);border-radius:24px;padding:2.5rem;max-width:540px;margin:0 auto;text-align:left;}
+.form-group{margin-bottom:1.4rem;}
+.form-group label{display:block;color:rgba(255,255,255,0.85);font-size:0.85rem;letter-spacing:0.05em;margin-bottom:0.5rem;}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:12px;padding:0.85rem 1.1rem;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.95rem;outline:none;transition:border 0.2s,background 0.2s;}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.45);}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.2);}
+.form-group textarea{resize:vertical;min-height:90px;}
+.form-group select option{color:#000;}
+.help-text{font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:0.4rem;}
+.btn-submit{width:100%;background:#fff;color:var(--teal-dark);border:none;border-radius:12px;padding:1rem;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;margin-top:0.5rem;transition:transform 0.2s,box-shadow 0.2s;}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,0.2);}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:300;align-items:center;justify-content:center;padding:2rem;}
+.lightbox.open{display:flex;}
+.lightbox-content{position:relative;}
+.lightbox-content img{max-width:90vw;max-height:80vh;border-radius:12px;display:block;}
+.lightbox-close{position:absolute;top:-14px;right:-14px;background:#fff;border:none;border-radius:50%;width:36px;height:36px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.3);}
+
+/* CELEBRATION */
+.cel-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:400;align-items:center;justify-content:center;padding:2rem;}
+.cel-modal.open{display:flex;}
+.cel-box{background:linear-gradient(135deg,#0f766e,#0891b2);border-radius:28px;padding:3rem 2.5rem;text-align:center;max-width:460px;width:100%;color:#fff;box-shadow:0 30px 80px rgba(0,0,0,0.4);animation:popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both;}
+@keyframes popIn{from{transform:scale(0.5);opacity:0}to{transform:scale(1);opacity:1}}
+.cel-box .cel-emoji{font-size:4rem;margin-bottom:1rem;display:block;animation:bounce 0.8s ease infinite alternate;}
+@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-12px)}}
+.cel-box h2{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:0.75rem;}
+.cel-box p{color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:1.2rem;font-size:0.95rem;}
+.screenshot-note{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:14px;padding:1rem;font-size:0.85rem;margin-bottom:1.5rem;line-height:1.6;}
+.cel-close{background:#fff;color:var(--teal-dark);border:none;border-radius:12px;padding:0.85rem 2rem;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;}
+
+.confetti-piece{position:fixed;animation:confettiFall linear forwards;z-index:500;pointer-events:none;}
+@keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:#134e4a;color:#fff;padding:1rem 2rem;border-radius:999px;font-size:0.9rem;z-index:999;transition:transform 0.4s ease;box-shadow:0 10px 30px rgba(0,0,0,0.2);}
+.toast.show{transform:translateX(-50%) translateY(0);}
+footer{text-align:center;padding:2rem;font-size:0.8rem;color:#99c4c0;}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <span class="logo">Your Space 💙</span>
+  <a class="back-btn" href="index.html">← Home</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="birthday-badge">✨ A Special Day ✨</div>
+    <h1>Happy<br/><em>Birthday</em></h1>
+    <p>Today we celebrate you — your laughter, your dreams, your beautiful journey. This little corner of the internet is made just for you. 💙</p>
+  </div>
+  <div class="scroll-hint">Scroll down<span></span></div>
+</section>
+
+<section class="wish-section">
+  <div class="section-label">A Message For You</div>
+  <h2 class="section-title">From the Heart</h2>
+  <div class="wish-card">
+    <p class="wish-text">
+      On this beautiful day, I want you to know how much you mean to me.
+      You bring warmth, light, and joy everywhere you go.
+      Your dedication — juggling your MBA, preparing for your exams,
+      chasing your dreams — inspires everyone around you.
+      <br/><br/>
+      May this year bring you every success you deserve,
+      every moment of peace you need, and every laugh that makes your heart full.
+      You are destined for extraordinary things.
+      <br/><br/>
+      Happy Birthday, my dearest friend. 🌊
+    </p>
+    <p class="wish-signature">— With all my love &amp; best wishes, Sivaani 💙</p>
+  </div>
+</section>
+
+
+<!-- HER MEMORIES SECTION -->
+<section class="her-section">
+  <div style="text-align:center;margin-bottom:1.5rem;">
+    <div class="section-label">Your Memory Wall</div>
+    <h2 class="section-title">Memories You've Added 🌊</h2>
+  </div>
+
+  <div class="drive-banner" id="driveBanner">
+    <h3>📁 Set Up Your Memory Space</h3>
+    <p>Paste your Google Drive folder link to connect your memory storage. Your added memories will be saved permanently — even when you close the site!</p>
+    <p class="hint">Open Google Drive → New Folder → Right-click → Share → "Anyone with the link" → Copy link</p>
+    <div class="drive-row">
+      <input class="drive-input" id="driveFolderInput" placeholder="Paste your Google Drive folder link..."/>
+      <button class="btn-drive" onclick="saveDriveFolder()">Connect 💙</button>
+    </div>
+  </div>
+
+  <div class="memory-grid" id="herGrid">
+    <div style="grid-column:1/-1;text-align:center;color:#99c4c0;padding:3rem;font-size:0.95rem;" id="emptyMsg">
+      No memories added yet — be the first! ✨
+    </div>
+  </div>
+</section>
+
+<!-- ADD A MEMORY -->
+<section class="add-section">
+  <h2>Add a Memory</h2>
+  <p>Share a Google Drive photo or video link and leave a little note 💙</p>
+  <div class="add-form">
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" id="memName" placeholder="Your name..."/>
+    </div>
+    <div class="form-group">
+      <label>Google Drive Link (Photo or Video)</label>
+      <input type="url" id="memLink" placeholder="https://drive.google.com/file/d/..."/>
+      <div class="help-text">Upload to Drive → Share → "Anyone with the link can view" → Copy & paste here</div>
+    </div>
+    <div class="form-group">
+      <label>Type</label>
+      <select id="memType">
+        <option value="photo">📸 Photo</option>
+        <option value="video">🎥 Video</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Caption / Memory Note</label>
+      <textarea id="memCaption" placeholder="Write something sweet..."></textarea>
+    </div>
+    <button class="btn-submit" onclick="addMemory()">Add to Memory Wall ✨</button>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-content" id="lightboxContent" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  </div>
+</div>
+
+<!-- CELEBRATION MODAL -->
+<div class="cel-modal" id="celModal">
+  <div class="cel-box">
+    <span class="cel-emoji">🎉</span>
+    <h2>100 Points! 🏆</h2>
+    <p>You've been working so hard and you've earned <strong>100 Reward Points!</strong><br/>Your best friend noticed — and she's getting you a treat! 🍫</p>
+    <div class="screenshot-note">
+      📸 <strong>Take a screenshot right now</strong> and send it to Sivaani!<br/>
+      She's buying you a <strong>KitKat! 🍫</strong><br/>
+      <span style="font-size:0.8rem;opacity:0.8;">A notification has also been sent to her 💌</span>
+    </div>
+    <button class="cel-close" onclick="document.getElementById('celModal').classList.remove('open')">Yay! Thank you Sivaani! 🎊</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<footer>Made with love 💙 — A birthday gift just for you</footer>
+
+<script>
+// ============================
+// EMAIL JS CONFIG
+// ============================
+// SETUP STEPS:
+// 1. Go to https://www.emailjs.com → Sign up free
+// 2. Add Gmail service → note SERVICE_ID
+// 3. Create email template → note TEMPLATE_ID
+// 4. Account → API Keys → note PUBLIC_KEY
+// 5. Replace the three values below
+const EJS_SERVICE  = 'YOUR_SERVICE_ID';   // ✏️
+const EJS_TEMPLATE = 'YOUR_TEMPLATE_ID';  // ✏️
+const EJS_KEY      = 'YOUR_PUBLIC_KEY';   // ✏️
+const MY_EMAIL     = 'sivaani1407@gmail.com';
+if (EJS_KEY !== 'YOUR_PUBLIC_KEY') emailjs.init(EJS_KEY);
+
+// ============================
+// BUBBLES
+// ============================
+window.addEventListener('DOMContentLoaded', () => {
+  const hero = document.querySelector('.hero');
+  for (let i = 0; i < 18; i++) {
+    const b = document.createElement('div');
+    b.className = 'bubble';
+    const s = Math.random()*60+20;
+    b.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*12+8}s;animation-delay:${Math.random()*10}s;`;
+    hero.appendChild(b);
+  }
+  loadDriveState();
+  renderHerMemories();
+});
+
+// ============================
+// DRIVE FOLDER STATE
+// ============================
+function saveDriveFolder() {
+  const val = document.getElementById('driveFolderInput').value.trim();
+  if (!val) { toast('Please paste your Drive folder link 💙'); return; }
+  localStorage.setItem('bdayDriveFolder', val);
+  document.getElementById('driveBanner').style.display = 'none';
+  toast('Memory space connected! 💙');
+}
+function loadDriveState() {
+  if (localStorage.getItem('bdayDriveFolder'))
+    document.getElementById('driveBanner').style.display = 'none';
+}
+
+// ============================
+// HER MEMORIES
+// ============================
+function getMemories() {
+  try { return JSON.parse(localStorage.getItem('bdayMems')||'[]'); } catch { return []; }
+}
+function saveMemories(arr) { localStorage.setItem('bdayMems', JSON.stringify(arr)); }
+
+function renderHerMemories() {
+  const grid = document.getElementById('herGrid');
+  const mems = getMemories();
+  if (mems.length === 0) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:#99c4c0;padding:3rem;font-size:0.95rem;">No memories added yet — be the first! ✨</div>`;
+    return;
+  }
+  grid.innerHTML = '';
+  mems.forEach(m => {
+    const fileId = extractId(m.link);
+    const card = document.createElement('div');
+    card.className = 'memory-card';
+    const thumb = fileId ? `https://drive.google.com/thumbnail?id=${fileId}&sz=w800` : '';
+    card.innerHTML = `
+      <div class="media-wrap" style="${m.type==='video'?'background:linear-gradient(135deg,#bae6fd,#c7d2fe)':''}">
+        ${m.type==='photo' && fileId
+          ? `<img src="${thumb}" onerror="this.parentElement.innerHTML='<div class=\'ph-icon\'>📸</div>'" alt="${m.caption}"/>`
+          : `<div class="ph-icon">${m.type==='video'?'🎥':'📸'}</div>`}
+        <span class="media-type-badge">${m.type==='video'?'VIDEO':'PHOTO'}</span>
+      </div>
+      <div class="card-body">
+        <div class="card-caption">${m.caption||'A memory ✨'}</div>
+        <div class="card-date">By ${m.name||'Someone special'} · ${m.date}</div>
+      </div>`;
+    card.onclick = () => {
+      if (!fileId) { toast('Could not read that Drive link.'); return; }
+      m.type === 'video' ? viewVideo(fileId) : viewPhoto(thumb, m.caption);
+    };
+    grid.appendChild(card);
+  });
+}
+
+function addMemory() {
+  const name    = document.getElementById('memName').value.trim();
+  const link    = document.getElementById('memLink').value.trim();
+  const type    = document.getElementById('memType').value;
+  const caption = document.getElementById('memCaption').value.trim();
+  if (!link) { toast('Please paste a Google Drive link 📸'); return; }
+  if (!extractId(link)) { toast('Could not read that Drive link. Make sure sharing is "Anyone with the link".'); return; }
+  const mems = getMemories();
+  mems.unshift({ name, link, type, caption, date: new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) });
+  saveMemories(mems);
+  renderHerMemories();
+  document.getElementById('memName').value='';
+  document.getElementById('memLink').value='';
+  document.getElementById('memCaption').value='';
+  toast('Memory added! 💙');
+  document.getElementById('herGrid').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function extractId(url) {
+  if (!url) return null;
+  for (const p of [/\/file\/d\/([a-zA-Z0-9_-]+)/,/id=([a-zA-Z0-9_-]+)/,/\/d\/([a-zA-Z0-9_-]+)/]) {
+    const m = url.match(p);
+    if (m) return m[1];
+  }
+  return null;
+}
+
+// ============================
+// LIGHTBOX
+// ============================
+function viewPhoto(src, cap) {
+  const c = document.getElementById('lightboxContent');
+  c.innerHTML = `<button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img src="${src}" alt="${cap||''}"/>
+    ${cap?`<p style="text-align:center;margin-top:0.8rem;color:#ccc;font-size:0.95rem;">${cap}</p>`:''}`;
+  document.getElementById('lightbox').classList.add('open');
+}
+function viewVideo(fileId) {
+  const c = document.getElementById('lightboxContent');
+  c.innerHTML = `<button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <iframe src="https://drive.google.com/file/d/${fileId}/preview" width="640" height="380"
+      style="border-radius:12px;border:none;max-width:90vw;" allow="autoplay"></iframe>`;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.getElementById('lightboxContent').innerHTML='';
+}
+
+// ============================
+// REWARD POINTS
+// ============================
+function getPoints() { return parseInt(localStorage.getItem('rewardPoints')||'0'); }
+function addPoints(n) {
+  const prev = getPoints();
+  const next = prev + n;
+  localStorage.setItem('rewardPoints', next);
+  if (prev < 100 && next >= 100) celebrate();
+}
+
+// ============================
+// CELEBRATION
+// ============================
+function celebrate() {
+  launchConfetti();
+  document.getElementById('celModal').classList.add('open');
+  if (EJS_KEY !== 'YOUR_PUBLIC_KEY') {
+    emailjs.send(EJS_SERVICE, EJS_TEMPLATE, {
+      to_email: MY_EMAIL,
+      subject: '🍫 She hit 100 Reward Points!',
+      message: 'Your friend just earned 100 reward points on her birthday website! Time to get her a KitKat! 🍫🎉'
+    });
+  }
+}
+function launchConfetti() {
+  ['#5eead4','#0ea5e9','#f59e0b','#fff','#a5f3fc'].forEach(color => {
+    for (let i=0;i<16;i++) {
+      const el = document.createElement('div');
+      el.className = 'confetti-piece';
+      const s = Math.random()*10+6;
+      el.style.cssText=`left:${Math.random()*100}vw;width:${s}px;height:${s}px;background:${color};animation-duration:${Math.random()*2+1.5}s;animation-delay:${Math.random()*0.5}s;border-radius:${Math.random()>0.5?'50%':'2px'};`;
+      document.body.appendChild(el);
+      el.addEventListener('animationend',()=>el.remove());
+    }
+  });
+}
+
+// ============================
+// TOAST
+// ============================
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3200);
+}
+</script>
+</body>
+</html>
